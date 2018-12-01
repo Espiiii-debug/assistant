@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 const { Client, RichEmbed } = require('discord.js')
 const bot = new Discord.Client()
 const token = process.env.token;
+const cfg = require('./index.json')
 var prefix = ("|")
 
 bot.login(token)
