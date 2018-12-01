@@ -1,9 +1,10 @@
 const Discord = require('discord.js')
 const { Client, RichEmbed } = require('discord.js')
 const bot = new Discord.Client()
+const token = process.env.token;
 var prefix = ("|")
 
-bot.login('NTE4MTc3MTc5NTIwMjA0ODEx.DuM-vA.yROfHV9LWQ0jlke9oTRvx-EtS6g')
+bot.login(token)
 
 bot.on ('ready', function (){
 	bot.user.setGame('vous aider ' + prefix + 'help').catch(console.error)
