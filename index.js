@@ -3,14 +3,22 @@ const { Client, RichEmbed } = require('discord.js')
 const bot = new Discord.Client()
 const token = process.env.token;
 const cfg = require('./index.json')
-var prefix = ("|")
+var prefix = ("a!")
 
-bot.login(token)
+//version normal
+//bot.login(cfg.token)
+
+bot.on('ready', () => {
+  console.log('Utilise moi!');
+});
+
+//version test
+bot.login("NTE4NDQ2MDQ4MTYzOTIxOTIx.DuQ4dQ.F7NUlYKoa-LixDQVE8CaZDUzMrQ")
 
 bot.on ('ready', function (){
-	bot.user.setGame(prefix + 'help').catch(console.error)
+	bot.user.setGame(/*'bot test ; ' + */prefix + 'help').catch(console.error)
 })
-
+	  
 // commandes
 bot.on('message', function (message){
 	
@@ -91,7 +99,8 @@ bot.on('message', function (message){
 			.setTitle("__Voici les informations sur le bot__")
 			.setFooter(`Demandé par: ${message.author.tag}`)
 			.setTimestamp()
-			.addField(":crown: Créateur:", "@Adri1 🇷🇺#6623")
+			.addField(":crown: Créateur:", "@Дdяi1 🇷🇺#6623"/*, true*/)
+			//.addField(":crown: Me supporter:", "", true)
 			.addField(":speech_balloon: Channels", bot.channels.size, true)
 			.addField(":abcd:Pseudo", bot.user.username)
 			.addField(":1234:Discriminator", bot.user.discriminator, true)
@@ -101,43 +110,114 @@ bot.on('message', function (message){
 		message.channel.send(embed);
 	}
 	
+	if(message.content.startsWith(prefix + "suppr") || message.content.startsWith(prefix + "clear") || message.content.startsWith(prefix + "clean")){
+		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_MESSAGES")){
+			let msg = message.content.split(' ')
+			msg.shift()
+			
+			if(message.content === prefix + 'suppr'){
+				message.reply('Combien de messages souhaitez-vous supprimé ?')
+			}else{
+				let x = parseInt(msg[0], 10)
+				if(x > 100){
+					x = 100
+				}
+				
+				message.delete()
+				message.channel.bulkDelete(x)
+				message.reply(x + ' messages supprimés')
+				message.channel.bulkDelete(1)
+			}
+		}else{
+		message.reply('Vous n\'avez pas l\'autorisation de supprimer des messages');
+		}
+	}
 })
 
-/*//kick
+//kick |kick
 bot.on('message', message => {
   if (!message.guild) return;
 
   if (message.content.startsWith(prefix + 'kick')) {
-    const user = message.mentions.users.first();
-    if (user) {
-      const member = message.guild.member(user);
-      if (member) {
-        member.kick('Raison du kick').then(() => {
-          message.reply(`**${user.tag}** à bien été exclu`);
-        }).catch(err => {
-          message.reply('impossible d\'exclure cet utilisateur');
-          console.error(err);
-        });
-      } else {
-        message.reply('Ce joueur n\'est pas sur le serveur');
-      }
-    } else {
-      message.reply(' veuillez mentionner un utilisateur.');
-    }
+	  if(message.channel.permissionsFor(message.member).hasPermission("KICK_MEMBERS")){
+		const user = message.mentions.users.first();
+		if (user) {
+		  const member = message.guild.member(user);
+		  if (member) {
+			member.kick('Raison du kick').then(() => {
+			  message.reply(`**${user.tag}** à bien été exclu`);
+			}).catch(err => {
+			  message.reply('impossible d\'exclure cet utilisateur');
+			  console.error(err);
+			});
+		  } else {
+			message.reply('Ce joueur n\'est pas sur le serveur');
+		  }
+		} else {
+		  message.reply(' veuillez mentionner un utilisateur.');
+		}
+	  }else{
+		message.reply('Vous n\'avez pas l\'autorisation d\'expulser des utilisateurs');
+	}
   }
 });
-*/
+
+//banne |ban
+bot.on('message', message => {
+  if (!message.guild) return;
+
+  if (message.content.startsWith(prefix + 'ban')) {
+	if(message.channel.permissionsFor(message.member).hasPermission("BAN_MEMBERS")){
+		const user = message.mentions.users.first();
+		if (user) {
+		  const member = message.guild.member(user);
+		  if (member) {
+			/**
+			 * Ban the member
+			 * Make sure you run this on a member, not a user!
+			 * There are big differences between a user and a member
+			 * Read more about what ban options there are over at
+			 * https://discord.js.org/#/docs/main/stable/class/GuildMember?scrollTo=ban
+			 */
+			member.ban({
+			  reason: 'They were bad!',
+			}).then(() => {
+			  message.reply(`le membre **${user.tag}** a bien été banni`);
+			}).catch(err => {
+			  message.reply('impossible de bannir ce membre');
+			  console.error(err);
+			});
+		  } else {
+			message.reply('Ce membre n\'est pas du serveur');
+		  }
+		} else {
+		  message.reply('Vous n\'avez pas mentionner l\'ultisateur à banne');
+		}
+	}else{
+		message.reply('Vous n\'avez pas l\'autorisation de bannir des utilisateurs');
+	}
+  }
+});
 
 //help
 bot.on('message', message => {
   if (message.content === prefix + 'help') {
 	const embed = new RichEmbed()
-      .setTitle('Commande d\'administartions')
+      .setTitle('Commandes classiques')
       .setColor('AQUA')
 	  //.addField("N'oubliez pas le préfixe "+prefix+" avant votre commande d'invocation", "Bientôt personnalisable !")
-	  .setDescription('Dire bonjour au bot : '+prefix+'bonjour \n\ Renseignements sur un membre : '+prefix+'user-info [membre] \n\ Envoyer une annonce : '+prefix+'send \'contenu\' \n\ Faire un sondage : '+prefix+'sondage \'question\' \n\ Information sur le serveur : '+prefix+'serv-info \n\ Information sur le bot : '+prefix+'bot-info \n\ \n\ **D\'autres arriveront bientôt**')
+	  .setDescription('Dire bonjour au bot : '+prefix+'bonjour \n\ Envoyer une annonce : '+prefix+'send \'contenu\' \n\ Faire un sondage : '+prefix+'sondage \'question\' \n\ Information sur le serveur : '+prefix+'serv-info \n\ Information sur le bot : '+prefix+'bot-info')
 		.setFooter(`Demandé par: ${message.author.tag}`)
 			.setTimestamp();
 	message.channel.send(embed);
+	
+	const embedd = new RichEmbed()
+      .setTitle('Commandes modérateurs')
+      .setColor('ORANGE')
+	  //.addField("N'oubliez pas le préfixe "+prefix+" avant votre commande d'invocation", "Bientôt personnalisable !")
+	  .setDescription('Renseignements sur un membre : '+prefix+'user-info [membre] \n\ Supprimer des messages : '+prefix+'suppr [nombre de message]  \n\ Expulser un membre : '+prefix+'kick [membre] \n\ Bannir un membre : '+prefix+'ban [membre]')
+		.setFooter(`Demandé par: ${message.author.tag}`)
+			.setTimestamp();
+	message.channel.send(embedd);
   }
 });
