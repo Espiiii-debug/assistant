@@ -6,14 +6,14 @@ const cfg = require('./index.json')
 var prefix = ("a!")
 
 //version normal
-//bot.login(cfg.token)
+bot.login(token)
 
 bot.on('ready', () => {
   console.log('Utilise moi!');
 });
 
 //version test
-bot.login("NTE4NDQ2MDQ4MTYzOTIxOTIx.DuQ4dQ.F7NUlYKoa-LixDQVE8CaZDUzMrQ")
+//bot.login("NTE4NDQ2MDQ4MTYzOTIxOTIx.DuQ4dQ.F7NUlYKoa-LixDQVE8CaZDUzMrQ")
 
 bot.on ('ready', function (){
 	bot.user.setGame(/*'bot test ; ' + */prefix + 'help').catch(console.error)
