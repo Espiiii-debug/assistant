@@ -5,7 +5,7 @@ const token = process.env.token;
 const cfg = require('./index.json')
 var prefix = ("|")
 
-bot.login(token)
+bot.login(cfg.token)
 
 bot.on ('ready', function (){
 	bot.user.setGame('vous aider ' + prefix + 'help').catch(console.error)
