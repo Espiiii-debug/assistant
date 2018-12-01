@@ -4,7 +4,7 @@ const bot = new Discord.Client()
 const token = process.env.token;
 var prefix = ("|")
 
-bot.login(token)
+bot.login("NTE4MTc3MTc5NTIwMjA0ODEx.DuP0GQ.T6TeSeDf5ztX9ZRUjEu98wvB9Y4")
 
 bot.on ('ready', function (){
 	bot.user.setGame('vous aider ' + prefix + 'help').catch(console.error)
