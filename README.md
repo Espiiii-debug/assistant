@@ -4,7 +4,7 @@ Dire bonjour au bot : a!bonjour
 
 Envoyer une annonce : a!send [contenu]
 
-Faire un sondage : a!sondage '[question]
+Faire un sondage : a!sondage [question]
 
 Information sur le serveur : a!serv-info
 
