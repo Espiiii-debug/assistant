@@ -262,19 +262,17 @@ bot.on('message', message => {
 	const embed = new RichEmbed()
       .setTitle('Commandes classiques')
       .setColor('AQUA')
-	  //.addField("N'oubliez pas le préfixe "+prefix+" avant votre commande d'invocation", "Bientôt personnalisable !")
-	  .setDescription('Dire bonjour au bot : **'+prefix+'bonjour** \n\ Envoyer une annonce : **'+prefix+'send** [**contenu**] \n\ Faire un sondage : **'+prefix+'sondage** [**question**] \n\ Information sur le serveur : **'+prefix+'serv-info** \n\ Membres sur le serveur : **'+prefix+'member-count** \n\ Information sur le bot : **'+prefix+'bot-info** \n\ '/* Mettre à jour le nombre de membres affichés sur le bot : **'+prefix+'setup-member-count** */' \n\ \n\ ')
+	  .setDescription('Dire bonjour au bot : **'+prefix+'bonjour** \n\ Envoyer une annonce : **'+prefix+'send** [**contenu**] \n\ Faire un sondage : **'+prefix+'sondage** [**question**] \n\ Information sur le serveur : **'+prefix+'serv-info** \n\ Membres sur le serveur : **'+prefix+'member-count** \n\ Information sur le bot : **'+prefix+'bot-info** \n\ \n\ ')
 	  .setFooter(`Demandé par: ${message.author.tag}`)
 	  .setTimestamp();
 	message.channel.send(embed);
 	
 	const embedd = new RichEmbed()
-      .setTitle('Commandes modérateurs')
-      .setColor('ORANGE')
-	  //.addField("N'oubliez pas le préfixe "+prefix+" avant votre commande d'invocation", "Bientôt personnalisable !")
-	  .setDescription('Renseignements sur un membre : **'+prefix+'user-info** [**membre**] \n\ Supprimer des messages : **'+prefix+'suppr** [**nombre de message**]  \n\ Expulser un membre : **'+prefix+'kick** [**membre**] \n\ Bannir un membre : **'+prefix+'ban** [**membre**] \n\ Zone de Commmandes : **'+prefix+'setup-cmd** \n\ \n\ ')
-		.setFooter(`Demandé par: ${message.author.tag}`)
-			.setTimestamp();
-	message.channel.send(embedd);
+      		.setTitle('Commandes modérateurs')
+      		.setColor('ORANGE')
+      		.setDescription('Renseignements sur un membre : **'+prefix+'user-info** [**membre**] \n\ Supprimer des messages : **'+prefix+'suppr** [**nombre de message**]  \n\ Expulser un membre : **'+prefix+'kick** [**membre**] \n\ Bannir un membre : **'+prefix+'ban** [**membre**] \n\ Zone de Commmandes : **'+prefix+'setup-cmd** \n\ \n\ ')
+      		.setFooter(`Demandé par: ${message.author.tag}`)
+      		.setTimestamp();
+      	message.channel.send(embedd);
   }
 });
