@@ -17,15 +17,15 @@ bot.on('ready', () => {
 // bot.login("NTE4NDQ2MDQ4MTYzOTIxOTIx.DuQ4dQ.F7NUlYKoa-LixDQVE8CaZDUzMrQ")
 
 bot.on ('ready', function (){
-	bot.user.setGame(prefix + 'help || ERREUR member count').catch(console.error)
+	bot.user.setGame(prefix + 'help '/* || ERREUR member count*/).catch(console.error)
 })
 
 bot.on('guildMemberAdd', member =>{
-	bot.user.setGame(prefix + 'help || '+member.guild.memberCount+' membres').catch(console.error)
+	bot.user.setGame(prefix + 'help '/*|| '+member.guild.memberCount+' membres'*/).catch(console.error)
 })
 
 bot.on('guildMemberRemove', member =>{
-	bot.user.setGame(prefix + 'help || '+member.guild.memberCount+' membres').catch(console.error)
+	bot.user.setGame(prefix + 'help '/*|| '+member.guild.memberCount+' membres'*/).catch(console.error)
 })
 
 // commandes
@@ -40,7 +40,7 @@ bot.on('message', function (message){
 			message.channel.send(embed);*/
 		message.reply('bonjour, que puis-je pour vous ? ( **'+prefix+'help** pour voir les commandes )')
 	}
-	
+/*	
 	if(message.content.startsWith(prefix + "setup-member-count") || message.content.startsWith(prefix + "smc")){
 		/*if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_CHANNELS")){
 			message.guild.createChannel('Member count: '+message.guild.memberCount, 'voice')
@@ -49,10 +49,10 @@ bot.on('message', function (message){
 			message.reply('le salon member count a bien été créé')
 		}else{
 		message.reply('Vous n\'avez pas l\'autorisation d\'ajouter des salons');
-		}*/
+		}*//*
 		bot.user.setGame(prefix + 'help || '+message.guild.memberCount+' membres').catch(console.error)
 		message.reply('le member count a bien été mis à jour.')
-	}
+	} */
 	
 	if(message.content.startsWith(prefix + "setup-cmd") || message.content.startsWith(prefix + "cmd")){
 		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_CHANNELS")){
@@ -263,7 +263,7 @@ bot.on('message', message => {
       .setTitle('Commandes classiques')
       .setColor('AQUA')
 	  //.addField("N'oubliez pas le préfixe "+prefix+" avant votre commande d'invocation", "Bientôt personnalisable !")
-	  .setDescription('Dire bonjour au bot : **'+prefix+'bonjour** \n\ Envoyer une annonce : **'+prefix+'send** [**contenu**] \n\ Faire un sondage : **'+prefix+'sondage** [**question**] \n\ Information sur le serveur : **'+prefix+'serv-info** \n\ Membres sur le serveur : **'+prefix+'member-count** \n\ Information sur le bot : **'+prefix+'bot-info** \n\ Mettre à jour le nombre de membres affichés sur le bot : **'+prefix+'setup-member-count** \n\ \n\ ')
+	  .setDescription('Dire bonjour au bot : **'+prefix+'bonjour** \n\ Envoyer une annonce : **'+prefix+'send** [**contenu**] \n\ Faire un sondage : **'+prefix+'sondage** [**question**] \n\ Information sur le serveur : **'+prefix+'serv-info** \n\ Membres sur le serveur : **'+prefix+'member-count** \n\ Information sur le bot : **'+prefix+'bot-info** \n\ '/* Mettre à jour le nombre de membres affichés sur le bot : **'+prefix+'setup-member-count** */ \n\ \n\ ')
 	  .setFooter(`Demandé par: ${message.author.tag}`)
 	  .setTimestamp();
 	message.channel.send(embed);
