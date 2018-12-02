@@ -263,7 +263,7 @@ bot.on('message', message => {
       .setTitle('Commandes classiques')
       .setColor('AQUA')
 	  //.addField("N'oubliez pas le préfixe "+prefix+" avant votre commande d'invocation", "Bientôt personnalisable !")
-	  .setDescription('Dire bonjour au bot : **'+prefix+'bonjour** \n\ Envoyer une annonce : **'+prefix+'send** [**contenu**] \n\ Faire un sondage : **'+prefix+'sondage** [**question**] \n\ Information sur le serveur : **'+prefix+'serv-info** \n\ Membres sur le serveur : **'+prefix+'member-count** \n\ Information sur le bot : **'+prefix+'bot-info** \n\ '/* Mettre à jour le nombre de membres affichés sur le bot : **'+prefix+'setup-member-count** */ \n\ \n\ ')
+	  .setDescription('Dire bonjour au bot : **'+prefix+'bonjour** \n\ Envoyer une annonce : **'+prefix+'send** [**contenu**] \n\ Faire un sondage : **'+prefix+'sondage** [**question**] \n\ Information sur le serveur : **'+prefix+'serv-info** \n\ Membres sur le serveur : **'+prefix+'member-count** \n\ Information sur le bot : **'+prefix+'bot-info** \n\ '/* Mettre à jour le nombre de membres affichés sur le bot : **'+prefix+'setup-member-count** */' \n\ \n\ ')
 	  .setFooter(`Demandé par: ${message.author.tag}`)
 	  .setTimestamp();
 	message.channel.send(embed);
