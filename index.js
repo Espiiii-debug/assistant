@@ -7,7 +7,7 @@ var prefix = ("a!")
 var websit = ("https://sites.google.com/view/assistant-bot")
 
 //version normal
-bot.login(token)
+bot.login(cfg.token)
 
 bot.on('ready', () => {
   console.log('Utilise moi!');
