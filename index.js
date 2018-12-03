@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+//const db = require('quick.db')
 const { Client, RichEmbed } = require('discord.js')
 const bot = new Discord.Client()
 const token = process.env.token;
@@ -7,29 +8,42 @@ var prefix = ("a!")
 var websit = ("https://sites.google.com/view/assistant-bot")
 
 //version normal
-bot.login(cfg.token)
-
-bot.on('ready', () => {
-  console.log('Utilise moi!');
-});
+bot.login(token)
 
 //version test
-// bot.login("NTE4NDQ2MDQ4MTYzOTIxOTIx.DuQ4dQ.F7NUlYKoa-LixDQVE8CaZDUzMrQ")
+//bot.login("NTE4NDQ2MDQ4MTYzOTIxOTIx.DuQ4dQ.F7NUlYKoa-LixDQVE8CaZDUzMrQ")
+
+bot.on('ready', () => {
+  console.log('Utilise moi!')
+  console.log('Connecté en tant que '+bot.user.tag+' ('+bot.user.id+') sur '+bot.guilds.size+' serveurs');
+});
 
 bot.on ('ready', function (){
-	bot.user.setGame(prefix + 'help '/* || ERREUR member count*/).catch(console.error)
+	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs'/*|| '+member.guild.member-count+' membres'*/).catch(console.error)
 })
 
+//event qq1 join
 bot.on('guildMemberAdd', member =>{
-	bot.user.setGame(prefix + 'help '/*|| '+member.guild.memberCount+' membres'*/).catch(console.error)
+//	bot.user.setGame(prefix + 'help '/*|| '+member.guild.memberCount+' membres'*/).catch(console.error)
 })
-
 bot.on('guildMemberRemove', member =>{
-	bot.user.setGame(prefix + 'help '/*|| '+member.guild.memberCount+' membres'*/).catch(console.error)
+//	bot.user.setGame(prefix + 'help '/*|| '+member.guild.memberCount+' membres'*/).catch(console.error)
 })
 
 // commandes
 bot.on('message', function (message){
+	
+	/*if(message.content.startsWith(prefix + "cn") || message.content.startsWith(prefix + "change-nom")){
+		message.guild.member(bot.user).setNickname('Assistant [bêta]')
+	}*/
+	
+	/*if(message.content.startsWith(prefix + "imgtest")){
+		const embed = new RichEmbed()
+		.setTitle("Test image")
+		.setImage("http://image.noelshack.com/fichiers/2018/49/1/1543870308-banned.png")
+		.addField("ta grosse mere")
+		message.channel.send(embed);
+	}*/
 	
 	if(message.content.startsWith(prefix + "bonjour") || message.content.startsWith(prefix + "bjr") || message.content.startsWith(prefix + "slt")){
 		const user = message.mentions.users.first();
@@ -40,19 +54,17 @@ bot.on('message', function (message){
 			message.channel.send(embed);*/
 		message.reply('bonjour, que puis-je pour vous ? ( **'+prefix+'help** pour voir les commandes )')
 	}
-/*	
-	if(message.content.startsWith(prefix + "setup-member-count") || message.content.startsWith(prefix + "smc")){
-		/*if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_CHANNELS")){
+	
+	/*if(message.content.startsWith(prefix + "setup-member-count") || message.content.startsWith(prefix + "smc")){
+		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_CHANNELS")){
+			
 			message.guild.createChannel('Member count: '+message.guild.memberCount, 'voice')
-				.then(console.log)
-				.catch(console.error);
-			message.reply('le salon member count a bien été créé')
+			//bot.channels.find('not_general').setName('sa vas')
+ 			message.reply('le salon member count a bien été créé')
 		}else{
 		message.reply('Vous n\'avez pas l\'autorisation d\'ajouter des salons');
-		}*//*
-		bot.user.setGame(prefix + 'help || '+message.guild.memberCount+' membres').catch(console.error)
-		message.reply('le member count a bien été mis à jour.')
-	} */
+		}
+	}*/
 	
 	if(message.content.startsWith(prefix + "setup-cmd") || message.content.startsWith(prefix + "cmd")){
 		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_CHANNELS")){
@@ -198,7 +210,13 @@ bot.on('message', message => {
 		  if (member) {
 			  message.channel.bulkDelete(1)
 			member.kick('Raison du kick').then(() => {
-			  message.reply(`**${user.tag}** à bien été exclu`);
+			const embed = new RichEmbed()
+			  .setTitle('Expulsion')
+			  .setColor('RED')
+			  .setDescription(`**${user.tag}** a bien été kick par **${message.author.tag}**`)
+			  .setFooter(`Kick par ${message.author.tag}`)
+			  .setTimestamp();
+			message.channel.send(embed);
 			}).catch(err => {
 			  message.reply('impossible d\'exclure cet utilisateur');
 			  console.error(err);
@@ -212,6 +230,31 @@ bot.on('message', message => {
 	  }else{
 		message.reply('Vous n\'avez pas l\'autorisation d\'expulser des utilisateurs');
 	}
+  }
+});
+
+//fake kick 
+bot.on('message', message => {
+  if (!message.guild) return;
+
+  if (message.content.startsWith(prefix + 'fake-kick') || message.content.startsWith(prefix + 'fk')) {
+		const user = message.mentions.users.first();
+		if (user) {
+		  const member = message.guild.member(user);
+		  if (member) {
+		    const embed = new RichEmbed()
+			  .setTitle('Expulsion (fake)')
+			  .setColor('RED')
+			  .setDescription(`**${user.tag}** a bien été kick par **${message.author.tag}**`)
+			  .setFooter(`Kick fake par ${message.author.tag}`)
+			  .setTimestamp();
+			message.channel.send(embed);
+		  } else {
+			message.reply('Ce joueur n\'est pas sur le serveur');
+		  }
+		} else {
+		  message.reply(' veuillez mentionner un utilisateur.');
+		}
   }
 });
 
@@ -233,11 +276,16 @@ bot.on('message', message => {
 			 * https://discord.js.org/#/docs/main/stable/class/GuildMember?scrollTo=ban
 			 */
 			member.ban({
-				
 			  reason: 'They were bad!',
 			}).then(() => {
 				message.channel.bulkDelete(1)
-			  message.reply(`le membre **${user.tag}** a bien été banni`);
+			    const embed = new RichEmbed()
+				  .setTitle('Bannisement')
+				  .setColor('RED')
+				  .setDescription(`**${user.tag}** a bien été banni par **${message.author.tag}**`)
+				  .setFooter(`Ban par ${message.author.tag}`)
+				  .setTimestamp();
+				message.channel.send(embed);
 			}).catch(err => {
 			  message.reply('impossible de bannir ce membre');
 			  console.error(err);
@@ -254,6 +302,32 @@ bot.on('message', message => {
   }
 });
 
+//fake banne 
+bot.on('message', message => {
+  if (!message.guild) return;
+
+  if (message.content.startsWith(prefix + 'fake-ban') || message.content.startsWith(prefix + 'fb')) {
+		const user = message.mentions.users.first();
+		if (user) {
+		  const member = message.guild.member(user);
+		  if (member) {
+			const embed = new RichEmbed()
+			  .setTitle('Bannisement (fake)')
+			  .setColor('RED')
+			  .setDescription(`**${user.tag}** a bien été banni par **${message.author.tag}**`)
+			  .setFooter(`Ban fake par ${message.author.tag}`)
+			  .setTimestamp();
+			message.channel.send(embed);
+		  } else {
+			message.reply('Ce membre n\'est pas du serveur');
+		  }
+		} else {
+		  message.reply('Vous n\'avez pas mentionner l\'ultisateur à banne');
+		}
+  }
+});
+
+
 //help
 bot.on('message', message => {
   if (message.content === prefix + 'help') {
@@ -262,17 +336,19 @@ bot.on('message', message => {
 	const embed = new RichEmbed()
       .setTitle('Commandes classiques')
       .setColor('AQUA')
-	  .setDescription('Dire bonjour au bot : **'+prefix+'bonjour** \n\ Envoyer une annonce : **'+prefix+'send** [**contenu**] \n\ Faire un sondage : **'+prefix+'sondage** [**question**] \n\ Information sur le serveur : **'+prefix+'serv-info** \n\ Membres sur le serveur : **'+prefix+'member-count** \n\ Information sur le bot : **'+prefix+'bot-info** \n\ \n\ ')
+	  //.addField("N'oubliez pas le préfixe "+prefix+" avant votre commande d'invocation", "Bientôt personnalisable !")
+	  .setDescription('Dire bonjour au bot : **'+prefix+'bonjour** \n\ Envoyer une annonce : **'+prefix+'send** [**contenu**] \n\ Faire un sondage : **'+prefix+'sondage** [**question**] \n\ Information sur le serveur : **'+prefix+'serv-info** \n\ Membres sur le serveur : **'+prefix+'member-count** \n\ Information sur le bot : **'+prefix+'bot-info** \n\ Ban un membre (fake) : **'+prefix+'fake-ban** [**membre**] \n\ Kick un membre (fake) : **'+prefix+'fake-kick** [**membre**] \n\ ')
 	  .setFooter(`Demandé par: ${message.author.tag}`)
 	  .setTimestamp();
 	message.channel.send(embed);
 	
 	const embedd = new RichEmbed()
-      		.setTitle('Commandes modérateurs')
-      		.setColor('ORANGE')
-      		.setDescription('Renseignements sur un membre : **'+prefix+'user-info** [**membre**] \n\ Supprimer des messages : **'+prefix+'suppr** [**nombre de message**]  \n\ Expulser un membre : **'+prefix+'kick** [**membre**] \n\ Bannir un membre : **'+prefix+'ban** [**membre**] \n\ Zone de Commmandes : **'+prefix+'setup-cmd** \n\ \n\ ')
-      		.setFooter(`Demandé par: ${message.author.tag}`)
-      		.setTimestamp();
-      	message.channel.send(embedd);
+      .setTitle('Commandes modérateurs')
+      .setColor('ORANGE')
+	  //.addField("N'oubliez pas le préfixe "+prefix+" avant votre commande d'invocation", "Bientôt personnalisable !")
+	  .setDescription('Renseignements sur un membre : **'+prefix+'user-info** [**membre**] \n\ Supprimer des messages : **'+prefix+'suppr** [**nombre de message**]  \n\ Expulser un membre : **'+prefix+'kick** [**membre**] \n\ Bannir un membre : **'+prefix+'ban** [**membre**] \n\ Zone de Commmandes : **'+prefix+'setup-cmd** \n\ \n\ ')
+		.setFooter(`Demandé par: ${message.author.tag}`)
+			.setTimestamp();
+	message.channel.send(embedd);
   }
 });
