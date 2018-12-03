@@ -22,6 +22,11 @@ bot.on ('ready', function (){
 	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs'/*|| '+member.guild.member-count+' membres'*/).catch(console.error)
 })
 
+bot.on('ready', function refreshGame(){
+	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs'/*|| '+member.guild.member-count+' membres'*/).catch(console.error)
+setTimeout(refreshGame,5000); // rappel après 2 secondes = 2000 millisecondes 
+})
+
 //event qq1 join
 bot.on('guildMemberAdd', member =>{
 //	bot.user.setGame(prefix + 'help '/*|| '+member.guild.memberCount+' membres'*/).catch(console.error)
