@@ -20,7 +20,7 @@ bot.on('ready', () => {
 bot.on ('ready', function(){
 	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs'/*|| '+member.guild.member-count+' membres'*/).catch(console.error)
 setTimeout(showUsers,10000);
-}
+
 function showServ(){
 	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs').catch(console.error)
 setTimeout(showUsers,10000);
