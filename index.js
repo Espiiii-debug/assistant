@@ -84,14 +84,14 @@ bot.on('message', function (message){
 		message.reply('bonjour, que puis-je pour vous ? ( **'+prefix+'help** pour voir les commandes )')
 	}
 	
-	//à bloqué
+	/*
 	if(message.content.startsWith(prefix + "setup-cmd") || message.content.startsWith(prefix + "cmd")){
 		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_CHANNELS")){
 			message.guild.createChannel('assistant--cmd', 'text')
 				.then(console.log)
 				.catch(console.error);
 			message.reply('le salon **assistant-cmd** a bien été créé')
-			/*setTimeout(sendMsgVerif658984,1000);
+			setTimeout(sendMsgVerif658984,1000);
 			function sendMsgVerif658984(){
 				const embed = new RichEmbed()
 					.setColor('BLUE')
@@ -99,11 +99,11 @@ bot.on('message', function (message){
 					.setFooter(`Message automatique`)
 					.setTimestamp();
 				message.guild.channels.find("name", "assistant-cmd").send(embed)
-			}*/			
+			}
 		}else{
 		message.reply('Vous n\'avez pas l\'autorisation d\'ajouter des salons');
 		}
-	}
+	}*/
 	
 	if(message.content.startsWith(prefix + "member-count") || message.content.startsWith(prefix + "mc")){
 		message.channel.bulkDelete(1)
