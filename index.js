@@ -41,19 +41,6 @@ bot.on ('ready', function(){
 	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs'/*|| '+member.guild.member-count+' membres'*/).catch(console.error)
 setTimeout(showUsers,10000);
 
-guild.createChannel('assistant--cmd', 'text')
-	.then(console.log)
-	.catch(console.error);
-setTimeout(sendMsgVerif658984,1000);
-function sendMsgVerif658984(){
-	const embed = new RichEmbed()
-		.setColor('BLUE')
-		.setDescription("C'est ici que vous pourrez executer des commandes "+guild.owner.user.tag+" sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur.")
-		.setFooter(`Message automatique`)
-		.setTimestamp();
-	guild.channels.find("name", "assistant-cmd").send(embed)
-}
-
 function showServ(){
 	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs').catch(console.error)
 setTimeout(showUsers,10000);
@@ -97,7 +84,8 @@ bot.on('message', function (message){
 		message.reply('bonjour, que puis-je pour vous ? ( **'+prefix+'help** pour voir les commandes )')
 	}
 	
-	/*if(message.content.startsWith(prefix + "setup-cmd") || message.content.startsWith(prefix + "cmd")){
+	//à bloqué
+	if(message.content.startsWith(prefix + "setup-cmd") || message.content.startsWith(prefix + "cmd")){
 		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_CHANNELS")){
 			message.guild.createChannel('assistant--cmd', 'text')
 				.then(console.log)
@@ -107,7 +95,7 @@ bot.on('message', function (message){
 			function sendMsgVerif658984(){
 				const embed = new RichEmbed()
 					.setColor('BLUE')
-					.setDescription('c\'est ici que vous pourrez executer des commandes '+message.guild.author+' sans encombrer les salons de tchat. C\'est ici que j\'enverrais également un message quand un membre quitte ou rejoin le serveur.')
+					.setDescription("C'est ici que vous pourrez executer des commandes "+guild.owner.user.tag+" sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur.")
 					.setFooter(`Message automatique`)
 					.setTimestamp();
 				message.guild.channels.find("name", "assistant-cmd").send(embed)
@@ -115,7 +103,7 @@ bot.on('message', function (message){
 		}else{
 		message.reply('Vous n\'avez pas l\'autorisation d\'ajouter des salons');
 		}
-	}*/
+	}
 	
 	if(message.content.startsWith(prefix + "member-count") || message.content.startsWith(prefix + "mc")){
 		message.channel.bulkDelete(1)
