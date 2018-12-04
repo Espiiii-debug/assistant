@@ -62,7 +62,7 @@ setTimeout(showServ,10000);
 bot.on('guildMemberAdd', member =>{
 	const embed = new RichEmbed()
 		.setColor('GOLD')
-		.addField("Nouveau membre !", `${member} nous a rejoin, nous sommes maintenant **${member.guild.memberCount}** grâce à lui/elle`, true)
+		.addField("Nouveau membre !", `${member} nous a rejoint, nous sommes maintenant **${member.guild.memberCount}** grâce à lui/elle`, true)
 		.setFooter(`Message automatique`)
 		.setTimestamp();
 	member.guild.channels.find("name", "assistant-cmd").send(embed)
