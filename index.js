@@ -91,8 +91,8 @@ bot.on('message', function (message){
 				.then(console.log)
 				.catch(console.error);
 			message.reply('le salon **assistant-cmd** a bien été créé')
-			setTimeout(sendMsgVerif658984,1000);
-			/*function sendMsgVerif658984(){
+			/*setTimeout(sendMsgVerif658984,1000);
+			function sendMsgVerif658984(){
 				const embed = new RichEmbed()
 					.setColor('BLUE')
 					.setDescription("C'est ici que vous pourrez executer des commandes "+guild.owner.user.tag+" sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur.")
