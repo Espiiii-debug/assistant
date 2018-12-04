@@ -29,7 +29,7 @@ bot.on('guildCreate', function(guild){
 	function sendMsgVerif658984(){
 		const embed = new RichEmbed()
 			.setColor('BLUE')
-			.setDescription("C'est ici que vous pourrez executer des commandes "+guild.owner.user.tag+" sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur. ***/!\ VEUILLEZ NE PAS RENOMMER CE SALON /!\***")
+			.setDescription("C'est ici que vous pouvez executer des commandes "+guild.owner.user.tag+" sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur. ***/!\ VEUILLEZ NE PAS RENOMMER CE SALON /!\***")
 			.setFooter(`Message automatique`)
 			.setTimestamp();
 		guild.channels.find("name", "assistant-cmd").send(embed)
