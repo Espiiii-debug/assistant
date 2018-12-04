@@ -41,18 +41,18 @@ bot.on ('ready', function(){
 	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs'/*|| '+member.guild.member-count+' membres'*/).catch(console.error)
 setTimeout(showUsers,10000);
 
-guild.createChannel('assistant--cmd', 'text')
-		.then(console.log)
-		.catch(console.error);
-	setTimeout(sendMsgVerif658984,1000);
-	function sendMsgVerif658984(){
-		const embed = new RichEmbed()
-			.setColor('BLUE')
-			.setDescription("C'est ici que vous pourrez executer des commandes **"+guild.owner.user.tag+"** sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur.")
-			.setFooter(`Message automatique`)
-			.setTimestamp();
-		guild.channels.find("name", "assistant-cmd").send(embed)
-	}
+bot.guild.createChannel('assistant--cmd', 'text')
+	.then(console.log)
+	.catch(console.error);
+setTimeout(sendMsgVerif658984,1000);
+function sendMsgVerif658984(){
+	const embed = new RichEmbed()
+		.setColor('BLUE')
+		.setDescription("C'est ici que vous pourrez executer des commandes **"+guild.owner.user.tag+"** sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur.")
+		.setFooter(`Message automatique`)
+		.setTimestamp();
+	bot.guild.channels.find("name", "assistant-cmd").send(embed)
+}
 
 function showServ(){
 	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs').catch(console.error)
