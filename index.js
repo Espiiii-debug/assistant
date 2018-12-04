@@ -1,30 +1,38 @@
 const Discord = require('discord.js')
-//const db = require('quick.db')
 const { Client, RichEmbed } = require('discord.js')
 const bot = new Discord.Client()
 const token = process.env.token;
+const tokenTest = process.env.tokentest;
 const cfg = require('./index.json')
-var prefix = ("a!")
+var prefix = ("a/")
 var websit = ("https://sites.google.com/view/assistant-bot")
 
 //version normal
 bot.login(token)
 
 //version test
-//bot.login("NTE4NDQ2MDQ4MTYzOTIxOTIx.DuQ4dQ.F7NUlYKoa-LixDQVE8CaZDUzMrQ")
+//bot.login(tokenTest)
 
 bot.on('ready', () => {
   console.log('Utilise moi!')
   console.log('Connecté en tant que '+bot.user.tag+' ('+bot.user.id+') sur '+bot.guilds.size+' serveurs');
 });
-
-bot.on ('ready', function (){
+bot.on ('ready', function(){
 	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs'/*|| '+member.guild.member-count+' membres'*/).catch(console.error)
-})
-
-bot.on('ready', function refreshGame(){
-	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs'/*|| '+member.guild.member-count+' membres'*/).catch(console.error)
-setTimeout(refreshGame,5000); // rappel après 2 secondes = 2000 millisecondes 
+setTimeout(showUsers,10000);
+}
+function showServ(){
+	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs').catch(console.error)
+setTimeout(showUsers,10000);
+}
+function showUsers(){
+	bot.user.setGame(prefix + 'help || utilisé par '+bot.users.size+' utilisateurs').catch(console.error)
+setTimeout(showChannels,10000); 
+}
+function showChannels(){
+	bot.user.setGame(prefix + 'help || surveille '+bot.channels.size+' salons').catch(console.error)
+setTimeout(showServ,10000); 
+}
 })
 
 //event qq1 join
@@ -38,38 +46,10 @@ bot.on('guildMemberRemove', member =>{
 // commandes
 bot.on('message', function (message){
 	
-	/*if(message.content.startsWith(prefix + "cn") || message.content.startsWith(prefix + "change-nom")){
-		message.guild.member(bot.user).setNickname('Assistant [bêta]')
-	}*/
-	
-	/*if(message.content.startsWith(prefix + "imgtest")){
-		const embed = new RichEmbed()
-		.setTitle("Test image")
-		.setImage("http://image.noelshack.com/fichiers/2018/49/1/1543870308-banned.png")
-		.addField("ta grosse mere")
-		message.channel.send(embed);
-	}*/
-	
 	if(message.content.startsWith(prefix + "bonjour") || message.content.startsWith(prefix + "bjr") || message.content.startsWith(prefix + "slt")){
 		const user = message.mentions.users.first();
-		/*const embed = new RichEmbed()
-			.setTitle('Bonjour')
-			.setColor('GREEN')
-			.setDescription('que puis-je pour vous ? (|help pour voir les commandes)');
-			message.channel.send(embed);*/
 		message.reply('bonjour, que puis-je pour vous ? ( **'+prefix+'help** pour voir les commandes )')
 	}
-	
-	/*if(message.content.startsWith(prefix + "setup-member-count") || message.content.startsWith(prefix + "smc")){
-		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_CHANNELS")){
-			
-			message.guild.createChannel('Member count: '+message.guild.memberCount, 'voice')
-			//bot.channels.find('not_general').setName('sa vas')
- 			message.reply('le salon member count a bien été créé')
-		}else{
-		message.reply('Vous n\'avez pas l\'autorisation d\'ajouter des salons');
-		}
-	}*/
 	
 	if(message.content.startsWith(prefix + "setup-cmd") || message.content.startsWith(prefix + "cmd")){
 		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_CHANNELS")){
@@ -80,7 +60,7 @@ bot.on('message', function (message){
 			
 			const embed = new RichEmbed()
 				.setColor('BLUE')
-				.setDescription('c\'est dans le salon #assistant--cmd que vous pourrez executer des commandes sans encombrer les salons de tchat. (Je vous conseille de bloquer l\'accés au autres utilisateurs)')
+				.setDescription('c\'est dans le salon **#assistant--cmd** que vous pourrez executer des commandes sans encombrer les salons de tchat. (Je vous conseille de bloquer l\'accés au autres utilisateurs)')
 				.setFooter(`Message automatique`)
 				.setTimestamp();
 			message.channel.send(embed);	
@@ -147,7 +127,6 @@ bot.on('message', function (message){
 		message.channel.bulkDelete(1)
 		const embed = new RichEmbed()
 			.setColor('BLUE')
-			//.setTitle(`${user.tag} Info`)
 			.setFooter(`Demandé par: ${message.author.tag}`)
 			.setTimestamp()
 			.addField("Pseudo Discord:", user.username)
@@ -166,8 +145,7 @@ bot.on('message', function (message){
 			.setTitle("__Voici les informations sur le bot__")
 			.setFooter(`Demandé par: ${message.author.tag}`)
 			.setTimestamp()
-			.addField(":crown: Créateur:", "@Дdяi1 🇷🇺#6623"/*, true*/)
-			//.addField(":crown: Me supporter:", "", true)
+			.addField(":crown: Créateur:", "@Дdяi1 🇷🇺#6623")
 			.addField(":speech_balloon: Channels", bot.channels.size, true)
 			.addField(":abcd: Pseudo", bot.user.username)
 			.addField(":1234: Discriminator", bot.user.discriminator, true)
@@ -273,13 +251,6 @@ bot.on('message', message => {
 		if (user) {
 		  const member = message.guild.member(user);
 		  if (member) {
-			/**
-			 * Ban the member
-			 * Make sure you run this on a member, not a user!
-			 * There are big differences between a user and a member
-			 * Read more about what ban options there are over at
-			 * https://discord.js.org/#/docs/main/stable/class/GuildMember?scrollTo=ban
-			 */
 			member.ban({
 			  reason: 'They were bad!',
 			}).then(() => {
@@ -341,7 +312,6 @@ bot.on('message', message => {
 	const embed = new RichEmbed()
       .setTitle('Commandes classiques')
       .setColor('AQUA')
-	  //.addField("N'oubliez pas le préfixe "+prefix+" avant votre commande d'invocation", "Bientôt personnalisable !")
 	  .setDescription('Dire bonjour au bot : **'+prefix+'bonjour** \n\ Envoyer une annonce : **'+prefix+'send** [**contenu**] \n\ Faire un sondage : **'+prefix+'sondage** [**question**] \n\ Information sur le serveur : **'+prefix+'serv-info** \n\ Membres sur le serveur : **'+prefix+'member-count** \n\ Information sur le bot : **'+prefix+'bot-info** \n\ Ban un membre (fake) : **'+prefix+'fake-ban** [**membre**] \n\ Kick un membre (fake) : **'+prefix+'fake-kick** [**membre**] \n\ ')
 	  .setFooter(`Demandé par: ${message.author.tag}`)
 	  .setTimestamp();
@@ -350,7 +320,6 @@ bot.on('message', message => {
 	const embedd = new RichEmbed()
       .setTitle('Commandes modérateurs')
       .setColor('ORANGE')
-	  //.addField("N'oubliez pas le préfixe "+prefix+" avant votre commande d'invocation", "Bientôt personnalisable !")
 	  .setDescription('Renseignements sur un membre : **'+prefix+'user-info** [**membre**] \n\ Supprimer des messages : **'+prefix+'suppr** [**nombre de message**]  \n\ Expulser un membre : **'+prefix+'kick** [**membre**] \n\ Bannir un membre : **'+prefix+'ban** [**membre**] \n\ Zone de Commmandes : **'+prefix+'setup-cmd** \n\ \n\ ')
 		.setFooter(`Demandé par: ${message.author.tag}`)
 			.setTimestamp();
