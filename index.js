@@ -4,7 +4,7 @@ const bot = new Discord.Client()
 const token = process.env.token;
 const tokenTest = process.env.tokentest;
 const cfg = require('./index.json')
-var prefix = ("a/")
+var prefix = ("a!")
 var websit = ("https://sites.google.com/view/assistant-bot")
 
 //version normal
