@@ -4,8 +4,9 @@ const bot = new Discord.Client()
 const token = process.env.token;
 const tokenTest = process.env.tokentest;
 const cfg = require('./index.json')
-var prefix = ("a!")
+var prefix = ("a/")
 var websit = ("https://sites.google.com/view/assistant-bot")
+var wbmsgroom = ("assistant-cmd");
 
 //version normal
 bot.login(token)
@@ -13,34 +14,79 @@ bot.login(token)
 //version test
 //bot.login(tokenTest)
 
+// lancement du bot (console)
 bot.on('ready', () => {
   console.log('Utilise moi!')
   console.log('Connecté en tant que '+bot.user.tag+' ('+bot.user.id+') sur '+bot.guilds.size+' serveurs');
 });
+
+//quand le bot rejoin un serv
+bot.on('guildCreate', function(guild){
+	guild.createChannel('assistant--cmd', 'text')
+		.then(console.log)
+		.catch(console.error);
+	setTimeout(sendMsgVerif658984,1000);
+	function sendMsgVerif658984(){
+		const embed = new RichEmbed()
+			.setColor('BLUE')
+			.setDescription(`c'est ici que vous pourrez executer des commandes ${guild.owner.user.tag+} sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur.`)
+			.setFooter(`Message automatique`)
+			.setTimestamp();
+		guild.channels.find("name", "assistant-cmd").send(embed)
+	}
+})
+
+//lancement du bot + ce qu'il affiche comme jeu en cour
 bot.on ('ready', function(){
 	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs'/*|| '+member.guild.member-count+' membres'*/).catch(console.error)
 setTimeout(showUsers,10000);
+
+guild.createChannel('assistant--cmd', 'text')
+		.then(console.log)
+		.catch(console.error);
+	setTimeout(sendMsgVerif658984,1000);
+	function sendMsgVerif658984(){
+		const embed = new RichEmbed()
+			.setColor('BLUE')
+			.setDescription(`c'est ici que vous pourrez executer des commandes ${guild.owner.user.tag+} sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur.`)
+			.setFooter(`Message automatique`)
+			.setTimestamp();
+		guild.channels.find("name", "assistant-cmd").send(embed)
+	}
 
 function showServ(){
 	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs').catch(console.error)
 setTimeout(showUsers,10000);
 }
+
 function showUsers(){
 	bot.user.setGame(prefix + 'help || utilisé par '+bot.users.size+' utilisateurs').catch(console.error)
 setTimeout(showChannels,10000); 
 }
+
 function showChannels(){
 	bot.user.setGame(prefix + 'help || surveille '+bot.channels.size+' salons').catch(console.error)
 setTimeout(showServ,10000); 
 }
+
 })
 
-//event qq1 join
+//event qq1 join + qq1 quitte
 bot.on('guildMemberAdd', member =>{
-//	bot.user.setGame(prefix + 'help '/*|| '+member.guild.memberCount+' membres'*/).catch(console.error)
+	const embed = new RichEmbed()
+		.setColor('GOLD')
+		.addField("Nouveau membre !", `${member} nous a rejoin, nous sommes maintenant **${member.guild.memberCount}** grâce à lui/elle`, true)
+		.setFooter(`Message automatique`)
+		.setTimestamp();
+	member.guild.channels.find("name", "assistant-cmd").send(embed)
 })
 bot.on('guildMemberRemove', member =>{
-//	bot.user.setGame(prefix + 'help '/*|| '+member.guild.memberCount+' membres'*/).catch(console.error)
+	const embed = new RichEmbed()
+		.setColor('BLACK')
+		.addField("Un membre nous à quitté...", `${member} nous a quitté, nous sommes maintenant **${member.guild.memberCount}**.`, true)
+		.setFooter(`Message automatique`)
+		.setTimestamp();
+	member.guild.channels.find("name", "assistant-cmd").send(embed)
 })
 
 // commandes
@@ -51,23 +97,25 @@ bot.on('message', function (message){
 		message.reply('bonjour, que puis-je pour vous ? ( **'+prefix+'help** pour voir les commandes )')
 	}
 	
-	if(message.content.startsWith(prefix + "setup-cmd") || message.content.startsWith(prefix + "cmd")){
+	/*if(message.content.startsWith(prefix + "setup-cmd") || message.content.startsWith(prefix + "cmd")){
 		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_CHANNELS")){
 			message.guild.createChannel('assistant--cmd', 'text')
 				.then(console.log)
 				.catch(console.error);
-			message.reply('le salon **assistant--cmd** a bien été créé')
-			
-			const embed = new RichEmbed()
-				.setColor('BLUE')
-				.setDescription('c\'est dans le salon **#assistant--cmd** que vous pourrez executer des commandes sans encombrer les salons de tchat. (Je vous conseille de bloquer l\'accés au autres utilisateurs)')
-				.setFooter(`Message automatique`)
-				.setTimestamp();
-			message.channel.send(embed);	
+			message.reply('le salon **assistant-cmd** a bien été créé')
+			setTimeout(sendMsgVerif658984,1000);
+			function sendMsgVerif658984(){
+				const embed = new RichEmbed()
+					.setColor('BLUE')
+					.setDescription('c\'est ici que vous pourrez executer des commandes '+message.guild.author+' sans encombrer les salons de tchat. C\'est ici que j\'enverrais également un message quand un membre quitte ou rejoin le serveur.')
+					.setFooter(`Message automatique`)
+					.setTimestamp();
+				message.guild.channels.find("name", "assistant-cmd").send(embed)
+			}			
 		}else{
 		message.reply('Vous n\'avez pas l\'autorisation d\'ajouter des salons');
 		}
-	}
+	}*/
 	
 	if(message.content.startsWith(prefix + "member-count") || message.content.startsWith(prefix + "mc")){
 		message.channel.bulkDelete(1)
@@ -192,7 +240,7 @@ bot.on('message', message => {
 		  const member = message.guild.member(user);
 		  if (member) {
 			  message.channel.bulkDelete(1)
-			member.kick('Raison du kick').then(() => {
+			member.kick('They are bad!').then(() => {
 			const embed = new RichEmbed()
 			  .setTitle('Expulsion')
 			  .setColor('RED')
@@ -320,7 +368,7 @@ bot.on('message', message => {
 	const embedd = new RichEmbed()
       .setTitle('Commandes modérateurs')
       .setColor('ORANGE')
-	  .setDescription('Renseignements sur un membre : **'+prefix+'user-info** [**membre**] \n\ Supprimer des messages : **'+prefix+'suppr** [**nombre de message**]  \n\ Expulser un membre : **'+prefix+'kick** [**membre**] \n\ Bannir un membre : **'+prefix+'ban** [**membre**] \n\ Zone de Commmandes : **'+prefix+'setup-cmd** \n\ \n\ ')
+	  .setDescription('Renseignements sur un membre : **'+prefix+'user-info** [**membre**] \n\ Supprimer des messages : **'+prefix+'suppr** [**nombre de message**]  \n\ Expulser un membre : **'+prefix+'kick** [**membre**] \n\ Bannir un membre : **'+prefix+'ban** [**membre**] \n\ \n\ ')
 		.setFooter(`Demandé par: ${message.author.tag}`)
 			.setTimestamp();
 	message.channel.send(embedd);
