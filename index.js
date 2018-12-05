@@ -4,6 +4,7 @@ const bot = new Discord.Client()
 const token = process.env.token;
 const tokenTest = process.env.tokentest;
 const cfg = require('./index.json')
+
 var prefix = ("a!")
 var websit = ("https://sites.google.com/view/assistant-bot")
 var wbmsgroom = ("assistant-cmd");
@@ -22,6 +23,7 @@ bot.on('ready', () => {
 
 //quand le bot rejoin un serv
 bot.on('guildCreate', function(guild){
+	
 	guild.createChannel('assistant--cmd', 'text')
 		.then(console.log)
 		.catch(console.error);
@@ -29,7 +31,7 @@ bot.on('guildCreate', function(guild){
 	function sendMsgVerif658984(){
 		const embed = new RichEmbed()
 			.setColor('BLUE')
-			.setDescription("C'est ici que vous pouvez executer des commandes "+guild.owner.user.tag+" sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoint le serveur. ***/!\ VEUILLEZ NE PAS RENOMMER CE SALON /!\***")
+			.setDescription("C'est ici que vous pourrez executer des commandes "+guild.owner.user.tag+" sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur.  ***/!\ VEUILLEZ NE PAS RENOMMER CE SALON /!\***")
 			.setFooter(`Message automatique`)
 			.setTimestamp();
 		guild.channels.find("name", "assistant-cmd").send(embed)
@@ -38,8 +40,8 @@ bot.on('guildCreate', function(guild){
 
 //lancement du bot + ce qu'il affiche comme jeu en cour
 bot.on ('ready', function(){
-	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs'/*|| '+member.guild.member-count+' membres'*/).catch(console.error)
-setTimeout(showUsers,10000);
+	bot.user.setGame(prefix + 'help || New Update !').catch(console.error)
+setTimeout(showUsers,15000);
 
 function showServ(){
 	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs').catch(console.error)
@@ -55,14 +57,13 @@ function showChannels(){
 	bot.user.setGame(prefix + 'help || surveille '+bot.channels.size+' salons').catch(console.error)
 setTimeout(showServ,10000); 
 }
-
 })
 
 //event qq1 join + qq1 quitte
 bot.on('guildMemberAdd', member =>{
 	const embed = new RichEmbed()
 		.setColor('GOLD')
-		.addField("Nouveau membre !", `${member} nous a rejoint, nous sommes maintenant **${member.guild.memberCount}** grâce à lui/elle`, true)
+		.addField("Nouveau membre !", `${member} nous a rejoin, nous sommes maintenant **${member.guild.memberCount}** grâce à lui/elle`, true)
 		.setFooter(`Message automatique`)
 		.setTimestamp();
 	member.guild.channels.find("name", "assistant-cmd").send(embed)
@@ -78,32 +79,77 @@ bot.on('guildMemberRemove', member =>{
 
 // commandes
 bot.on('message', function (message){
+
+	if(message.content.startsWith(prefix + "news")) {
+			const embed = new RichEmbed()
+			  .setTitle('Patch Note (05/12/2018)')
+			  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544044519-nouveaute-png.png")
+			  .setColor('GOLD')
+			  .addField("Nouvelles commandes", "2 nouvelles commandes on fait leur apparition, vous pouvez maintenant muter un joueur. ("+prefix+"help pour en prendre connaissance)")
+			  .addField("Nouveau design", "Toutes les réponses du Bot ont été retravaillés pour vous offrir une meilleure expérience visuelle.", true)
+			  .addField("Documentation disponible", "Désormais en cas de soucis avec le bot vous pouvez à tout moment consulter la documentation ici : https://sites.google.com/view/assistant-bot/documentation.")
+			  .addField("Discord communautaire", "Un Discord communautaire viens d'ouvrir, vous pouvez le rejoindre en cliquant ici :  https://discord.gg/YzvdAv8.", true)
+			  .setFooter(`Message automatique`)
+			  .setTimestamp();
+			//message.channel.send(embed);
+			member.guild.channels.find("name", "assistant-cmd").send(embed)
+			message.guild.channels.find("name", "assistant-cmd").send("@everyone patch note du 05/12/2018")
+    }
+	
+	if(message.content.startsWith(prefix + "mute") || message.content.startsWith(prefix + "tg")) {
+        if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("Vous n'avez pas la permission !");
+ 
+        if(message.mentions.users.size === 0) {
+            return message.channel.send('Vous devez mentionner un utilisateur !');
+        }
+        var mute = message.guild.member(message.mentions.users.first());
+        if(!mute) {
+            return message.channel.send("Je n'ai pas trouvé l'utilisateur ou il n'existe pas !");
+        }
+        if(!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return message.channel.send("Je n'ai pas la permission !");
+        message.channel.overwritePermissions(mute, { SEND_MESSAGES: true}).then(member => {
+			const embed = new RichEmbed()
+			  .setTitle('Mute (textuel)')
+			  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544039143-mute.png")
+			  .setColor('DARK_RED')
+			  .setDescription(`**${mute.user.tag}** a bien été mute sur ce salon par **${message.author.tag}**`)
+			  .setFooter(`Mute par ${message.author.tag}`)
+			  .setTimestamp();
+			message.channel.send(embed);
+            //message.channel.send(`${mute.user.username} est mute !`);
+        })
+    }
+	
+	if(message.content.startsWith(prefix + "unmute")) {
+        if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("Vous n'avez pas la permission !");
+ 
+        if(message.mentions.users.size === 0) {
+            return message.channel.send('Vous devez mentionner un utilisateur !');
+        }
+ 
+        var mute = message.guild.member(message.mentions.users.first());
+        if(!mute) {
+            return message.channel.send("Je n'ai pas trouvé l'utilisateur ou il n'existe pas !");
+        }
+ 
+        if(!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return message.channel.send("Je n'ai pas la permission !");
+        message.channel.overwritePermissions(mute, { SEND_MESSAGES: false}).then(member => {
+			const embed = new RichEmbed()
+			  .setTitle('Unmute (textuel)')
+			  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544039147-unmute.png")
+			  .setColor('NAVY')
+			  .setDescription(`**${mute.user.tag}** a bien été ummute de ce salon par **${message.author.tag}**`)
+			  .setFooter(`Unmute par ${message.author.tag}`)
+			  .setTimestamp();
+			message.channel.send(embed);
+            //message.channel.send(`${mute.user.username} n'est plus mute !`);
+        })
+    }
 	
 	if(message.content.startsWith(prefix + "bonjour") || message.content.startsWith(prefix + "bjr") || message.content.startsWith(prefix + "slt")){
 		const user = message.mentions.users.first();
 		message.reply('bonjour, que puis-je pour vous ? ( **'+prefix+'help** pour voir les commandes )')
 	}
-	
-	/*
-	if(message.content.startsWith(prefix + "setup-cmd") || message.content.startsWith(prefix + "cmd")){
-		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_CHANNELS")){
-			message.guild.createChannel('assistant--cmd', 'text')
-				.then(console.log)
-				.catch(console.error);
-			message.reply('le salon **assistant-cmd** a bien été créé')
-			setTimeout(sendMsgVerif658984,1000);
-			function sendMsgVerif658984(){
-				const embed = new RichEmbed()
-					.setColor('BLUE')
-					.setDescription("C'est ici que vous pourrez executer des commandes "+guild.owner.user.tag+" sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur.")
-					.setFooter(`Message automatique`)
-					.setTimestamp();
-				message.guild.channels.find("name", "assistant-cmd").send(embed)
-			}
-		}else{
-		message.reply('Vous n\'avez pas l\'autorisation d\'ajouter des salons');
-		}
-	}*/
 	
 	if(message.content.startsWith(prefix + "member-count") || message.content.startsWith(prefix + "mc")){
 		message.channel.bulkDelete(1)
@@ -232,6 +278,7 @@ bot.on('message', message => {
 			const embed = new RichEmbed()
 			  .setTitle('Expulsion')
 			  .setColor('RED')
+			  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544035353-kick.png")
 			  .setDescription(`**${user.tag}** a bien été kick par **${message.author.tag}**`)
 			  .setFooter(`Kick par ${message.author.tag}`)
 			  .setTimestamp();
@@ -263,6 +310,7 @@ bot.on('message', message => {
 		  if (member) {
 		    const embed = new RichEmbed()
 			  .setTitle('Expulsion (fake)')
+			  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544035353-kick.png")
 			  .setColor('RED')
 			  .setDescription(`**${user.tag}** a bien été kick par **${message.author.tag}**`)
 			  .setFooter(`Kick fake par ${message.author.tag}`)
@@ -292,7 +340,8 @@ bot.on('message', message => {
 			}).then(() => {
 				message.channel.bulkDelete(1)
 			    const embed = new RichEmbed()
-				  .setTitle('Bannisement')
+				  .setTitle('Bannisement') 
+				  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544036972-banned.png")
 				  .setColor('RED')
 				  .setDescription(`**${user.tag}** a bien été banni par **${message.author.tag}**`)
 				  .setFooter(`Ban par ${message.author.tag}`)
@@ -325,6 +374,7 @@ bot.on('message', message => {
 		  if (member) {
 			const embed = new RichEmbed()
 			  .setTitle('Bannisement (fake)')
+			  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544036972-banned.png")
 			  .setColor('RED')
 			  .setDescription(`**${user.tag}** a bien été banni par **${message.author.tag}**`)
 			  .setFooter(`Ban fake par ${message.author.tag}`)
@@ -347,6 +397,7 @@ bot.on('message', message => {
 	
 	const embed = new RichEmbed()
       .setTitle('Commandes classiques')
+	  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544041154-commandes.png")
       .setColor('AQUA')
 	  .setDescription('Dire bonjour au bot : **'+prefix+'bonjour** \n\ Envoyer une annonce : **'+prefix+'send** [**contenu**] \n\ Faire un sondage : **'+prefix+'sondage** [**question**] \n\ Information sur le serveur : **'+prefix+'serv-info** \n\ Membres sur le serveur : **'+prefix+'member-count** \n\ Information sur le bot : **'+prefix+'bot-info** \n\ Ban un membre (fake) : **'+prefix+'fake-ban** [**membre**] \n\ Kick un membre (fake) : **'+prefix+'fake-kick** [**membre**] \n\ ')
 	  .setFooter(`Demandé par: ${message.author.tag}`)
@@ -355,10 +406,11 @@ bot.on('message', message => {
 	
 	const embedd = new RichEmbed()
       .setTitle('Commandes modérateurs')
+	  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544041145-modo.png")
       .setColor('ORANGE')
-	  .setDescription('Renseignements sur un membre : **'+prefix+'user-info** [**membre**] \n\ Supprimer des messages : **'+prefix+'suppr** [**nombre de message**]  \n\ Expulser un membre : **'+prefix+'kick** [**membre**] \n\ Bannir un membre : **'+prefix+'ban** [**membre**] \n\ \n\ ')
-		.setFooter(`Demandé par: ${message.author.tag}`)
-			.setTimestamp();
+	  .setDescription('Renseignements sur un membre : **'+prefix+'user-info** [**membre**] \n\ Supprimer des messages : **'+prefix+'suppr** [**nombre de message**]  \n\ Expulser un membre : **'+prefix+'kick** [**membre**] \n\ Bannir un membre : **'+prefix+'ban** [**membre**] \n\ Mute un membre : **'+prefix+'mute** [**membre**] \n\ Unmute un membre : **'+prefix+'unmute** [**membre**] \n\n ')
+	  .setFooter(`Demandé par: ${message.author.tag}`)
+	  .setTimestamp();
 	message.channel.send(embedd);
   }
 });
