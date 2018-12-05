@@ -40,7 +40,7 @@ bot.on('guildCreate', function(guild){
 
 //lancement du bot + ce qu'il affiche comme jeu en cour
 bot.on ('ready', function(){
-	bot.user.setGame(prefix + 'help || New Update !').catch(console.error)
+	bot.user.setGame(prefix + 'help || actif sur '+bot.guilds.size+' serveurs').catch(console.error)
 setTimeout(showUsers,15000);
 
 function showServ(){
@@ -80,7 +80,7 @@ bot.on('guildMemberRemove', member =>{
 // commandes
 bot.on('message', function (message){
 
-	if(message.content.startsWith(prefix + "news")) {
+	/*if(message.content.startsWith(prefix + "news")) {
 			const embed = new RichEmbed()
 			  .setTitle('Patch Note (05/12/2018)')
 			  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544044519-nouveaute-png.png")
@@ -94,7 +94,7 @@ bot.on('message', function (message){
 			//message.channel.send(embed);
 			message.guild.channels.find("name", "assistant-cmd").send(embed)
 			message.guild.channels.find("name", "assistant-cmd").send("@everyone patch note du 05/12/2018")
-    }
+    	}*/
 	
 	if(message.content.startsWith(prefix + "mute") || message.content.startsWith(prefix + "tg")) {
         if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("Vous n'avez pas la permission !");
