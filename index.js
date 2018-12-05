@@ -92,7 +92,7 @@ bot.on('message', function (message){
 			  .setFooter(`Message automatique`)
 			  .setTimestamp();
 			//message.channel.send(embed);
-			member.guild.channels.find("name", "assistant-cmd").send(embed)
+			message.guild.channels.find("name", "assistant-cmd").send(embed)
 			message.guild.channels.find("name", "assistant-cmd").send("@everyone patch note du 05/12/2018")
     }
 	
