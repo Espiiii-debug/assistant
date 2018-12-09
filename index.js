@@ -34,7 +34,9 @@ bot.on('guildCreate', function(guild){
 			.setDescription("C'est ici que vous pourrez executer des commandes "+guild.owner.user.tag+" sans encombrer les salons de tchat. C'est ici que j'enverrais également un message quand un membre quitte ou rejoin le serveur.  ***/!\ VEUILLEZ NE PAS RENOMMER CE SALON /!\***")
 			.setFooter(`Message automatique`)
 			.setTimestamp();
-		guild.channels.find("name", "assistant-cmd").send(embed)
+	const envoyer = member.guild.channels.find("name", "assistant-cmd");
+	if (!envoyer) return;
+	envoyer.send(embed);
 	}
 })
 
@@ -60,21 +62,26 @@ setTimeout(showServ,10000);
 })
 
 //event qq1 join + qq1 quitte
-bot.on('guildMemberAdd', member =>{
+bot.on('guildMemberAdd', async member =>{
 	const embed = new RichEmbed()
 		.setColor('GOLD')
 		.addField("Nouveau membre !", `${member} nous a rejoin, nous sommes maintenant **${member.guild.memberCount}** grâce à lui/elle`, true)
 		.setFooter(`Message automatique`)
 		.setTimestamp();
-	member.guild.channels.find("name", "assistant-cmd").send(embed)
+		
+const envoyer = member.guild.channels.find("name", "assistant-cmd");
+if (!envoyer) return;
+envoyer.send(embed);
 })
-bot.on('guildMemberRemove', member =>{
+bot.on('guildMemberRemove', async member =>{
 	const embed = new RichEmbed()
 		.setColor('BLACK')
 		.addField("Un membre nous à quitté...", `${member} nous a quitté, nous sommes maintenant **${member.guild.memberCount}**.`, true)
 		.setFooter(`Message automatique`)
 		.setTimestamp();
-	member.guild.channels.find("name", "assistant-cmd").send(embed)
+const envoyer = member.guild.channels.find("name", "assistant-cmd");
+if (!envoyer) return;
+envoyer.send(embed);
 })
 
 // commandes
