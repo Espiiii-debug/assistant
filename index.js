@@ -65,7 +65,7 @@ bot.on('guildMemberAdd', async member =>{
 	if (!channel) return;
 		const embed = new RichEmbed()
 			.setColor('GOLD')
-			.addField("Nouveau membre !", `${member} nous a rejoin, nous sommes maintenant **${member.guild.memberCount}** grâce à lui/elle`, true)
+			.addField("Nouveau membre !", `${member} nous a rejoins, nous sommes maintenant **${member.guild.memberCount}** grâce à lui/elle`, true)
 			.setFooter(`Message automatique`)
 			.setTimestamp();
 		channel.send(embed);
