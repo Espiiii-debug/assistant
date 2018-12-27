@@ -232,7 +232,7 @@ bot.on('message', function (message){
 			.setTitle("__Voici les informations sur le bot__")
 			.setFooter(`Demandé par: ${message.author.tag}`)
 			.setTimestamp()
-			.addField(":crown: Créateur:", "@Дdяi1 🇷🇺#6623")
+			.addField(":crown: Créateur:", "@Дdяi1#6623")
 			.addField(":speech_balloon: Channels", bot.channels.size, true)
 			.addField(":abcd: Pseudo", bot.user.username)
 			.addField(":1234: Discriminator", bot.user.discriminator, true)
