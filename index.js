@@ -418,8 +418,8 @@ bot.on('message', message => {
 	if(message.content === 'efhsdfcsbuyf54sqd1r6sqd1c') {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
-		guildMember.addRole('VIP');
-		console.log('tu es VIP')
+		guildMember.addRole('DJ');
+		console.log('tu es DJ')
 	}
 
 	if(message.content === 'erfteqv57s1e4dfc1s1') {
