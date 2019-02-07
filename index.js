@@ -9,6 +9,7 @@ var prefix = ("a!")
 var websit = ("https://sites.google.com/view/assistant-bot")
 var wbmsgroom = ("assistant-cmd");
 var moi = ("Дdяi1#6623")
+var rykii = ("D4RK-Rỉkky#3956")
 //version normal
 bot.login(token)
 
@@ -101,7 +102,7 @@ bot.on('message', function (message){
     	}*/
 	
 	if(message.content.startsWith(prefix + "mute") || message.content.startsWith(prefix + "qsfdrezef564")) {
-        if(message.author.tag == moi || !message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("Vous n'avez pas la permission !");
+        if(message.author.tag != moi || !message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("Vous n'avez pas la permission !");
  
         if(message.mentions.users.size === 0) {
             return message.channel.send('Vous devez mentionner un utilisateur !');
@@ -232,7 +233,7 @@ bot.on('message', function (message){
 			.setTitle("__Voici les informations sur le bot__")
 			.setFooter(`Demandé par: ${message.author.tag}`)
 			.setTimestamp()
-			.addField(":crown: Créateur:", "@Дdяi1#6623")
+			.addField(":crown: Créateur:", "@"+ moi)
 			.addField(":speech_balloon: Channels", bot.channels.size, true)
 			.addField(":abcd: Pseudo", bot.user.username)
 			.addField(":1234: Discriminator", bot.user.discriminator, true)
@@ -273,13 +274,13 @@ bot.on('message', message => {
   if (!message.guild) return;
 
   if (message.content.startsWith(prefix + 'kick')) {
-	  if(message.channel.permissionsFor(message.member).hasPermission("KICK_MEMBERS")){
+	  if(message.channel.permissionsFor(message.member).hasPermission("KICK_MEMBERS") || message.author.tag != rykii){
 		const user = message.mentions.users.first();
 		if (user) {
 		  const member = message.guild.member(user);
 		  if (member) {
 			  message.channel.bulkDelete(1)
-			member.kick('They are bad!').then(() => {
+			/*member.kick('They are bad!').then(() => {
 			const embed = new RichEmbed()
 			  .setTitle('Expulsion')
 			  .setColor('RED')
@@ -287,7 +288,7 @@ bot.on('message', message => {
 			  .setDescription(`**${user.tag}** a bien été kick par **${message.author.tag}**`)
 			  .setFooter(`Kick par ${message.author.tag}`)
 			  .setTimestamp();
-			message.channel.send(embed);
+			message.channel.send(embed);*/
 			}).catch(err => {
 			  message.reply('impossible d\'exclure cet utilisateur');
 			  console.error(err);
