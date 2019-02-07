@@ -18,7 +18,7 @@ bot.login(token)
 // lancement du bot (console)
 bot.on('ready', () => {
   console.log('Utilise moi!')
-  console.log('Connecté en tant que '+bot.user.tag+' ('+bot.user.id+') sur '+bot.guilds.size+' serveurs');
+  console.log('Suce Connecté en tant que '+bot.user.tag+' ('+bot.user.id+') sur '+bot.guilds.size+' serveurs');
 });
 
 //quand le bot rejoin un serv
