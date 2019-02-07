@@ -425,8 +425,8 @@ bot.on('message', message => {
 	if(message.content === 'erfteqv57s1e4dfc1s1') {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
-		guildMember.removeRole('VIP');
-		console.log('ah plus VIP')
+		guildMember.removeRole('MEMBRE');
+		console.log('ah plus MEMBRE')
 	}
 	
   if (message.content === prefix + 'help') {
