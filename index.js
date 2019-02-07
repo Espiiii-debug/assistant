@@ -398,7 +398,7 @@ bot.on('message', message => {
 //help
 bot.on('message', message => {
 	
-	if(message.content === prefix + "testadri1bot") {
+	if(message.content === prefix + 'testadri1bot') {
 		const embed = new RichEmbed()
 			.setAuthor(bot.user.username, bot.user.avatarURL)
 			.setColor('NAVY')
@@ -414,14 +414,14 @@ bot.on('message', message => {
 		console.log('ouaip,info send')
 	}
 
-	if(message.content === prefix + "efhsdfcsbuyf54sqd1r6sqd1c") {
+	if(message.content === prefix + 'efhsdfcsbuyf54sqd1r6sqd1c') {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
 		guildMember.addRole('MEMBRE');
 		console.log('tu es membre')
 	}
 
-	if(message.content === prefix + "erfteqv57s1e4dfc1s1") {
+	if(message.content === prefix + 'erfteqv57s1e4dfc1s1') {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
 		guildMember.removeRole('MEMBRE');
