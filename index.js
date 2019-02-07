@@ -100,8 +100,8 @@ bot.on('message', function (message){
 			message.guild.channels.find("name", "assistant-cmd").send("@everyone patch note du 05/12/2018")
     	}*/
 	
-	if(message.content.startsWith(prefix + "mute") || message.content.startsWith(prefix + "tg")) {
-        if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("Vous n'avez pas la permission !");
+	if(message.content.startsWith(prefix + "mute") || message.content.startsWith(prefix + "ergzefszerd")) {
+        if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR") || message.author.id != '471663839633735680') return message.channel.send("Vous n'avez pas la permission !");
  
         if(message.mentions.users.size === 0) {
             return message.channel.send('Vous devez mentionner un utilisateur !');
