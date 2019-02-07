@@ -84,6 +84,11 @@ bot.on('guildMemberRemove', async member =>{
 // commandes
 bot.on('message', function (message){
 
+	if(message.content.startsWith(prefix + "efhsdfcsbuyf54sqd1r6sqd1c")) {
+		const guildMember = message.member;
+		guildMember.addRole('MEMBRE');
+	}
+	
 	/*if(message.content.startsWith(prefix + "news")) {
 			const embed = new RichEmbed()
 			  .setTitle('Patch Note (05/12/2018)')
