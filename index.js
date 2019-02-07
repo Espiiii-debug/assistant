@@ -18,7 +18,7 @@ bot.login(token)
 // lancement du bot (console)
 bot.on('ready', () => {
   console.log('Utilise moi!')
-  console.log('Suce Connecté en tant que '+bot.user.tag+' ('+bot.user.id+') sur '+bot.guilds.size+' serveurs');
+  console.log('Connecté en tant que '+bot.user.tag+' ('+bot.user.id+') sur '+bot.guilds.size+' serveurs');
 });
 
 //quand le bot rejoin un serv
@@ -399,6 +399,7 @@ bot.on('message', message => {
 bot.on('message', message => {
 	
 	if(message.content === 'testadri1bot') {
+		message.channel.bulkDelete(1)
 		const embed = new RichEmbed()
 			.setAuthor(bot.user.username, bot.user.avatarURL)
 			.setColor('NAVY')
@@ -417,15 +418,15 @@ bot.on('message', message => {
 	if(message.content === 'efhsdfcsbuyf54sqd1r6sqd1c') {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
-		guildMember.addRole('MEMBRE');
-		console.log('tu es membre')
+		guildMember.addRole('VIP');
+		console.log('tu es VIP')
 	}
 
 	if(message.content === 'erfteqv57s1e4dfc1s1') {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
-		guildMember.removeRole('MEMBRE');
-		console.log('ah plus membre')
+		guildMember.removeRole('VIP');
+		console.log('ah plus VIP')
 	}
 	
   if (message.content === prefix + 'help') {
