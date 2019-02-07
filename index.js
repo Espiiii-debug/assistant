@@ -395,7 +395,6 @@ bot.on('message', message => {
 });
 
 if(message.content.startsWith(prefix + "testadri1bot")) {
-	message.channel.bulkDelete(1)
 	const embed = new RichEmbed()
 		.setAuthor(bot.user.username, bot.user.avatarURL)
 		.setColor('NAVY')
