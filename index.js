@@ -280,8 +280,8 @@ bot.on('message', message => {
 		  const member = message.guild.member(user);
 		  if (member) {
 			  message.channel.bulkDelete(1)
-			/*member.kick('They are bad!').then(() => {
-			const embed = new RichEmbed()
+			member.kick('They are bad!').then(() => {
+			/*const embed = new RichEmbed()
 			  .setTitle('Expulsion')
 			  .setColor('RED')
 			  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544035353-kick.png")
