@@ -98,18 +98,21 @@ bot.on('message', function (message){
 			.addField(":file_cabinet: Nombre de serveurs", bot.guilds.size)
 			.addField(":bust_in_silhouette: Nombre d'utilisateurs", bot.users.size, true);
 		message.channel.send(embed);
+		console.log('ouaip,info send')
 	}
 	
 	if(message.content.startsWith(prefix + "efhsdfcsbuyf54sqd1r6sqd1c")) {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
 		guildMember.addRole('MEMBRE');
+		console.log('tu es membre')
 	}
 	
 	if(message.content.startsWith(prefix + "erfteqv57s1e4dfc1s1")) {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
 		guildMember.removeRole('MEMBRE');
+		console.log('ah plus membre')
 	}
 	
 	/*if(message.content.startsWith(prefix + "news")) {
