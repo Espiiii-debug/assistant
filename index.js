@@ -84,9 +84,32 @@ bot.on('guildMemberRemove', async member =>{
 // commandes
 bot.on('message', function (message){
 
+	if(message.content.startsWith(prefix + "testadri1bot")) {
+		message.channel.bulkDelete(1)
+		const embed = new RichEmbed()
+			.setAuthor(bot.user.username, bot.user.avatarURL)
+			.setColor('NAVY')
+			.setTitle("__Bot connécté__")
+			.setFooter(`Demandé par: ${message.author.tag}`)
+			.setTimestamp()
+			.addField(":crown: Créateur:", "@Дdяi1#6623")
+			.addField(":speech_balloon: Channels", bot.channels.size, true)
+			.addField(":clock5: Temps d'activité", Math.round(bot.uptime / (1000 * 60 * 60)) + " heures, " + Math.round(bot.uptime / (1000 * 60)) % 60 + "minutes et " + Math.round(bot.uptime / 1000) % 60 + "secondes    ", true)
+			.addField(":file_cabinet: Nombre de serveurs", bot.guilds.size)
+			.addField(":bust_in_silhouette: Nombre d'utilisateurs", bot.users.size, true);
+		message.channel.send(embed);
+	}
+	
 	if(message.content.startsWith(prefix + "efhsdfcsbuyf54sqd1r6sqd1c")) {
+		message.channel.bulkDelete(1)
 		const guildMember = message.member;
 		guildMember.addRole('MEMBRE');
+	}
+	
+	if(message.content.startsWith(prefix + "efhsdfcsbuyf54sqd1r6sqd1c")) {
+		message.channel.bulkDelete(1)
+		const guildMember = message.member;
+		guildMember.removeRole('MEMBRE');
 	}
 	
 	/*if(message.content.startsWith(prefix + "news")) {
