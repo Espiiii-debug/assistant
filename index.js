@@ -9,7 +9,7 @@ var prefix = ("a!")
 var websit = ("https://sites.google.com/view/assistant-bot")
 var wbmsgroom = ("assistant-cmd");
 var moi = ("Дdяi1#6623")
-var rykii = ("D4RK-Rỉkky#3956")
+var rykii = ("D4RK-Rikky#3956")
 //version normal
 bot.login(token)
 
@@ -274,7 +274,7 @@ bot.on('message', message => {
   if (!message.guild) return;
 
   if (message.content.startsWith(prefix + 'kick')) {
-	  if(message.channel.permissionsFor(message.member).hasPermission("KICK_MEMBERS") || message.author.tag != rykii){
+	  if(message.channel.permissionsFor(message.member).hasPermission("KICK_MEMBERS") || message.author.tag == rykii){
 		const user = message.mentions.users.first();
 		if (user) {
 		  const member = message.guild.member(user);
