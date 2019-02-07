@@ -101,7 +101,7 @@ bot.on('message', function (message){
     	}*/
 	
 	if(message.content.startsWith(prefix + "mute") || message.content.startsWith(prefix + "qsfdrezef564")) {
-        if(message.author.tag != moi || !message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("Vous n'avez pas la permission !");
+        if(message.author.tag == moi || !message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("Vous n'avez pas la permission !");
  
         if(message.mentions.users.size === 0) {
             return message.channel.send('Vous devez mentionner un utilisateur !');
