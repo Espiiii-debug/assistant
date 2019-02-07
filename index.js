@@ -106,7 +106,7 @@ bot.on('message', function (message){
 		guildMember.addRole('MEMBRE');
 	}
 	
-	if(message.content.startsWith(prefix + "efhsdfcsbuyf54sqd1r6sqd1c")) {
+	if(message.content.startsWith(prefix + "erfteqv57s1e4dfc1s1")) {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
 		guildMember.removeRole('MEMBRE');
