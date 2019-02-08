@@ -245,7 +245,7 @@ bot.on('message', function (message){
 	}
 	
 	if(message.content.startsWith(prefix + "suppr") || message.content.startsWith(prefix + "clear") || message.content.startsWith(prefix + "clean")){
-		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_MESSAGES")){
+		if(message.channel.permissionsFor(message.member).hasPermission("MANAGE_MESSAGES") || message.author.tag == rykii || message.author.tag == moi){
 			let msg = message.content.split(' ')
 			msg.shift()
 			
