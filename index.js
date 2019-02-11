@@ -9,7 +9,7 @@ var prefix = ("a!")
 var websit = ("https://sites.google.com/view/assistant-bot")
 var wbmsgroom = ("assistant-cmd");
 var moi = ("Дdяi1#6623")
-var rykii = ("D4RK-Rikky#3956")
+var rykii = ("")
 //version normal
 bot.login(token)
 
@@ -274,21 +274,21 @@ bot.on('message', message => {
   if (!message.guild) return;
 
   if (message.content.startsWith(prefix + 'kick')) {
-	  if(message.channel.permissionsFor(message.member).hasPermission("KICK_MEMBERS") || message.author.tag == rykii){
+	  if(message.channel.permissionsFor(message.member).hasPermission("KICK_MEMBERS") || message.author.tag == moi){
 		const user = message.mentions.users.first();
 		if (user) {
 		  const member = message.guild.member(user);
 		  if (member) {
 			  message.channel.bulkDelete(1)
 			member.kick('They are bad!').then(() => {
-			/*const embed = new RichEmbed()
+			const embed = new RichEmbed()
 			  .setTitle('Expulsion')
 			  .setColor('RED')
 			  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544035353-kick.png")
 			  .setDescription(`**${user.tag}** a bien été kick par **${message.author.tag}**`)
 			  .setFooter(`Kick par ${message.author.tag}`)
 			  .setTimestamp();
-			message.channel.send(embed);*/
+			message.channel.send(embed);
 			}).catch(err => {
 			  message.reply('impossible d\'exclure cet utilisateur');
 			  console.error(err);
