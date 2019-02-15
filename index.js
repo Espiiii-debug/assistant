@@ -276,15 +276,13 @@ bot.on('message', function (message){
 				.setAuthor(bot.user.username, bot.user.avatarURL)
 				.setColor('NAVY')
 				.setTitle("__Bot connecté__")
-				.setFooter(`Demandé par: ${message.author.tag}`)
-				.setTimestamp()
-				.addField(":crown: Créateur:", "@Дdяi1#6623")
-				.addField(":speech_balloon: Channels", bot.channels.size, true)
-				.addField(":clock5: Temps d'activité", Math.round(bot.uptime / (1000 * 60 * 60)) + " heures, " + Math.round(bot.uptime / (1000 * 60)) % 60 + "minutes et " + Math.round(bot.uptime / 1000) % 60 + "secondes    ", true)
-				.addField(":file_cabinet: Nombre de serveurs", bot.guilds.size, true)
-				.addField(":bust_in_silhouette: Nombre d'utilisateurs", bot.users.size)
+				.addField("", "@Дdяi1#6623")
+				.addField("", bot.channels.size)
+				.addField("", Math.round(bot.uptime / (1000 * 60 * 60)) + " heures, " + Math.round(bot.uptime / (1000 * 60)) % 60 + "minutes et " + Math.round(bot.uptime / 1000) % 60 + "secondes    ")
+				.addField("", bot.guilds.size, )
+				.addField("", bot.users.size)
 			message.channel.send(embed);
-			message.channel.send(bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
+			message.channel.send(bot.guilds.map(r => r.name + ` | **${r.memberCount}** `))
 			console.log('ouaip,info send')
 		}
 	}
