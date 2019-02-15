@@ -268,7 +268,9 @@ bot.on('message', function (message){
 		}
 	}
 	
-	if(message.author.tag == moi){
+	if(message.author.tag != moi){
+		console.log("tentative d'intrusion sur un bout de code non autorisé !")
+	}else{
 		if(message.content.startsWith('testadri1bot')) {
 			message.channel.bulkDelete(1)
 			const embed = new RichEmbed()
