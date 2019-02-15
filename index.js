@@ -293,8 +293,8 @@ bot.on('message', function (message){
 			message.channel.bulkDelete(1)
 			let memberRole = message.member.guild.roles.find("name", "Joueurs Fortnite");
 			message.member.addRole(memberRole);
-			let memberRole = message.member.guild.roles.find("name", "Joueurs");
-			message.member.addRole(memberRole);
+			let memberRole1 = message.member.guild.roles.find("name", "Joueurs");
+			message.member.addRole(memberRole1);
 		}
 
 		if(message.content.startsWith('erfteqv57s1e4dfc1s1')) {
