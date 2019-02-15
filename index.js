@@ -419,7 +419,7 @@ bot.on('message', message => {
 	if(message.content === 'efhsdfcsbuyf54sqd1r6sqd1c') {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
-		let memberRole = member.guild.roles.find("name", "Bots")
+		let memberRole = member.guild.roles.find("name", "Joueurs Overwatch")
 		guildMember.addRole(memberRole);
 	}
 
