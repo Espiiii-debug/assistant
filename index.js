@@ -268,34 +268,36 @@ bot.on('message', function (message){
 		}
 	}
 	
-	if(message.content === 'testadri1bot' && message.author.tag == moi) {
-		message.channel.bulkDelete(1)
-		const embed = new RichEmbed()
-			.setAuthor(bot.user.username, bot.user.avatarURL)
-			.setColor('NAVY')
-			.setTitle("__Bot connécté__")
-			.setFooter(`Demandé par: ${message.author.tag}`)
-			.setTimestamp()
-			.addField(":crown: Créateur:", "@Дdяi1#6623")
-			.addField(":speech_balloon: Channels", bot.channels.size, true)
-			.addField(":clock5: Temps d'activité", Math.round(bot.uptime / (1000 * 60 * 60)) + " heures, " + Math.round(bot.uptime / (1000 * 60)) % 60 + "minutes et " + Math.round(bot.uptime / 1000) % 60 + "secondes    ", true)
-			.addField(":file_cabinet: Nombre de serveurs", bot.guilds.size)
-			.addField(":bust_in_silhouette: Nombre d'utilisateurs", bot.users.size, true);
-		message.channel.send(embed);
-		console.log('ouaip,info send')
-	}
+	if(message.author.tag == moi){
+		if(message.content === 'testadri1bot') {
+			message.channel.bulkDelete(1)
+			const embed = new RichEmbed()
+				.setAuthor(bot.user.username, bot.user.avatarURL)
+				.setColor('NAVY')
+				.setTitle("__Bot connécté__")
+				.setFooter(`Demandé par: ${message.author.tag}`)
+				.setTimestamp()
+				.addField(":crown: Créateur:", "@Дdяi1#6623")
+				.addField(":speech_balloon: Channels", bot.channels.size, true)
+				.addField(":clock5: Temps d'activité", Math.round(bot.uptime / (1000 * 60 * 60)) + " heures, " + Math.round(bot.uptime / (1000 * 60)) % 60 + "minutes et " + Math.round(bot.uptime / 1000) % 60 + "secondes    ", true)
+				.addField(":file_cabinet: Nombre de serveurs", bot.guilds.size)
+				.addField(":bust_in_silhouette: Nombre d'utilisateurs", bot.users.size, true);
+			message.channel.send(embed);
+			console.log('ouaip,info send')
+		}
 
-	if(message.content === 'efhsdfcsbuyf54sqd1r6sqd1c' && message.author.tag == moi) {
-		message.channel.bulkDelete(1)
-		let memberRole = message.member.guild.roles.find("name", "Joueurs Overwatch");
-		message.member.addRole(memberRole);
-	}
+		if(message.content === 'efhsdfcsbuyf54sqd1r6sqd1c') {
+			message.channel.bulkDelete(1)
+			let memberRole = message.member.guild.roles.find("name", "Joueurs Overwatch");
+			message.member.addRole(memberRole);
+		}
 
-	if(message.content === 'erfteqv57s1e4dfc1s1' && message.author.tag == moi) {
-		message.channel.bulkDelete(1)
-		const guildMember = message.member;
-		guildMember.removeRole('MEMBRE');
-		console.log('ah plus MEMBRE');
+		if(message.content === 'erfteqv57s1e4dfc1s1') {
+			message.channel.bulkDelete(1)
+			const guildMember = message.member;
+			guildMember.removeRole('MEMBRE');
+			console.log('ah plus MEMBRE');
+		}
 	}
 })
 
