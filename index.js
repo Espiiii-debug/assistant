@@ -291,9 +291,9 @@ bot.on('message', function (message){
 	if(message.content.startsWith('efhsdfcsbuyf54sqd1r6sqd1c')) {
 		if(message.author.tag === moi){
 			message.channel.bulkDelete(1)
-			let memberRole = message.member.guild.roles.find("name", "Joueurs Fortnite");
+			let memberRole = message.member.guild.roles.find("name", "DJ");
 			message.member.addRole(memberRole);
-			let memberRole1 = message.member.guild.roles.find("name", "Joueurs");
+			let memberRole1 = message.member.guild.roles.find("name", "BOT");
 			message.member.addRole(memberRole1);
 		}
 	}
@@ -301,7 +301,7 @@ bot.on('message', function (message){
 	if(message.content.startsWith('erfteqv57s1e4dfc1s1')) {
 		if(message.author.tag === moi){
 			message.channel.bulkDelete(1)
-			let memberRole = message.member.guild.roles.find("name", "Membres");
+			let memberRole = message.member.guild.roles.find("name", "BOT");
 			message.member.removeRole(memberRole);
 		}
 	}
