@@ -268,7 +268,7 @@ bot.on('message', function (message){
 		}
 	}
 	
-	if(message.author.tag === moi){
+	//if(message.author.tag === moi){
 	if(message.content === 'testadri1bot') {
 		message.channel.bulkDelete(1)
 		const embed = new RichEmbed()
@@ -297,7 +297,7 @@ bot.on('message', function (message){
 		const guildMember = message.member;
 		guildMember.removeRole('MEMBRE');
 		console.log('ah plus MEMBRE');
-	}
+	//}
 	}
 })
 
