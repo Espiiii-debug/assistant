@@ -269,7 +269,7 @@ bot.on('message', function (message){
 	}
 	
 	//if(message.author.tag === moi){
-	if(message.content === 'testadri1bot') {
+	if(message.content.startsWith('testadri1bot')) {
 		message.channel.bulkDelete(1)
 		const embed = new RichEmbed()
 			.setAuthor(bot.user.username, bot.user.avatarURL)
@@ -286,13 +286,16 @@ bot.on('message', function (message){
 		console.log('ouaip,info send')
 	}
 
-	if(message.content === 'efhsdfcsbuyf54sqd1r6sqd1c') {
+	if(message.content.startsWith('efhsdfcsbuyf54sqd1r6sqd1c')) {
 		message.channel.bulkDelete(1)
-		let memberRole = message.member.guild.roles.find("name", "Joueurs Overwatch");
+		let msg = message.content.split(' ')
+		msg.shift()
+			
+		let memberRole = message.member.guild.roles.find("name", msg);
 		message.member.addRole(memberRole);
 	}
 
-	if(message.content === 'erfteqv57s1e4dfc1s1') {
+	if(message.content.startsWith('erfteqv57s1e4dfc1s1')) {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
 		guildMember.removeRole('MEMBRE');
