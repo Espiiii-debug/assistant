@@ -275,7 +275,7 @@ bot.on('message', function (message){
 			const embed = new RichEmbed()
 				.setAuthor(bot.user.username, bot.user.avatarURL)
 				.setColor('NAVY')
-				.setTitle("__Bot connécté__")
+				.setTitle("__Bot connecté__")
 				.setFooter(`Demandé par: ${message.author.tag}`)
 				.setTimestamp()
 				.addField(":crown: Créateur:", "@Дdяi1#6623")
