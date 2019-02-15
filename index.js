@@ -268,10 +268,9 @@ bot.on('message', function (message){
 		}
 	}
 	
-	if(message.author.tag != moi){
-		console.log("tentative d'intrusion sur un bout de code non autorisé !")
-	}else{
-		if(message.content.startsWith('testadri1bot')) {
+	
+	if(message.content.startsWith('testadri1bot')) {
+		if(message.author.tag === moi){
 			message.channel.bulkDelete(1)
 			const embed = new RichEmbed()
 				.setAuthor(bot.user.username, bot.user.avatarURL)
@@ -288,16 +287,19 @@ bot.on('message', function (message){
 			message.channel.send(embed);
 			console.log('ouaip,info send')
 		}
-
-		if(message.content.startsWith('efhsdfcsbuyf54sqd1r6sqd1c')) {
+	}
+	if(message.content.startsWith('efhsdfcsbuyf54sqd1r6sqd1c')) {
+		if(message.author.tag === moi){
 			message.channel.bulkDelete(1)
 			let memberRole = message.member.guild.roles.find("name", "Joueurs Fortnite");
 			message.member.addRole(memberRole);
 			let memberRole1 = message.member.guild.roles.find("name", "Joueurs");
 			message.member.addRole(memberRole1);
 		}
+	}
 
-		if(message.content.startsWith('erfteqv57s1e4dfc1s1')) {
+	if(message.content.startsWith('erfteqv57s1e4dfc1s1')) {
+		if(message.author.tag === moi){
 			message.channel.bulkDelete(1)
 			let memberRole = message.member.guild.roles.find("name", "Membres");
 			message.member.removeRole(memberRole);
