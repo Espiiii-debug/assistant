@@ -284,7 +284,7 @@ bot.on('message', function (message){
 				.addField(":clock5: Temps d'activité", Math.round(bot.uptime / (1000 * 60 * 60)) + " heures, " + Math.round(bot.uptime / (1000 * 60)) % 60 + "minutes et " + Math.round(bot.uptime / 1000) % 60 + "secondes    ", true)
 				.addField(":file_cabinet: Nombre de serveurs", bot.guilds.size, true)
 				.addField(":bust_in_silhouette: Nombre d'utilisateurs", bot.users.size)
-				.addField("Tous les serveurs :", bot.guilds.forEach())
+				.addField("Tous les serveurs :", bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
 			message.channel.send(embed);
 			console.log('ouaip,info send')
 		}
