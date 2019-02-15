@@ -418,7 +418,7 @@ bot.on('message', message => {
 
 	if(message.content === 'efhsdfcsbuyf54sqd1r6sqd1c') {
 		message.channel.bulkDelete(1)
-		let memberRole = message.member.guild.roles.find("name", "Joueurs Overwatch")
+		let memberRole = message.member.guild.roles.find("name", "Joueurs Overwatch");
 		message.member.addRole(memberRole);
 	}
 
@@ -426,7 +426,7 @@ bot.on('message', message => {
 		message.channel.bulkDelete(1)
 		const guildMember = message.member;
 		guildMember.removeRole('MEMBRE');
-		console.log('ah plus MEMBRE')
+		console.log('ah plus MEMBRE');
 	}
 	
   if (message.content === prefix + 'help') {
