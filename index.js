@@ -307,13 +307,15 @@ bot.on('message', function (message){
 	}
 	
 	if (message.content === 'qresgyhtjigjghfgdf') {
-		message.channel.bulkDelete(1)
+		if(message.author.tag === moi){
+			message.channel.bulkDelete(1)
 
-		const embed = new RichEmbed()
-			.setThumbnail("https://image.noelshack.com/fichiers/2019/08/3/1550679786-b6e47389-62f1-484b-a887-17581ad477a1.jpeg")
-			.setColor('#fd79a8')
-			.setFooter(`RIP Vador :cry: | 10/01/11 - 15/02/19 10h24`)
-		message.channel.send(embed);
+			const embed = new RichEmbed()
+				.addField("", "https://image.noelshack.com/fichiers/2019/08/3/1550679786-b6e47389-62f1-484b-a887-17581ad477a1.jpeg")
+				.setColor('#fd79a8')
+				.setFooter(`RIP Vador :cry: | 10/01/11 - 15/02/19 10h24`)
+			message.channel.send(embed);
+		}
   	}
 })
 
