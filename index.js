@@ -57,7 +57,7 @@ setTimeout(showChannels,10000);
 
 function showChannels(){
 	bot.user.setGame(prefix + 'help || surveille '+bot.channels.size+' salons').catch(console.error)
-setTimeout(showServ,10000); 
+setTimeout(showNul,10000); 
 }
 	
 function showNul(){
