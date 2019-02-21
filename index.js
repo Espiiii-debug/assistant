@@ -50,7 +50,7 @@ setTimeout(showUsers,10000);
 }
 
 function showUsers(){
-	bot.user.setGame(prefix + 'help || utilisé par '+bot.users.size+' utilisateurs').catch(console.error)
+	bot.user.setGame(prefix + 'help || '+bot.users.size+' commandes par heure).catch(console.error)
 setTimeout(showChannels,10000); 
 }
 
