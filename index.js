@@ -291,7 +291,6 @@ bot.on('message', function (message){
 				.addField("", bot.users.size)
 				.addField("drtbrir zbrv mr npy :", bot.guilds.map(r => r.name + ` | **${r.memberCount}** `))
 			message.channel.send(embed);
-			message.channel.send()
 		}
 	}
 	
