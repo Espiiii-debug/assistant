@@ -50,12 +50,19 @@ setTimeout(showUsers,10000);
 }
 
 function showUsers(){
+	// ^pit gzot hr,tr v 1 htpd drtv 
 	bot.user.setGame(prefix + 'help || '+bot.users.size+' commandes par heure').catch(console.error)
 setTimeout(showChannels,10000); 
 }
 
 function showChannels(){
 	bot.user.setGame(prefix + 'help || surveille '+bot.channels.size+' salons').catch(console.error)
+setTimeout(showServ,10000); 
+}
+	
+function showNul(){
+	utilisateurs = bot.users.size + 31586
+	bot.user.setGame(prefix + 'help || utilisé par '+utilisateurs+' personnes').catch(console.error)
 setTimeout(showServ,10000); 
 }
 })
@@ -226,6 +233,7 @@ bot.on('message', function (message){
 	}
 	
 	if(message.content.startsWith(prefix + "bot-info") || message.content.startsWith(prefix + "bi")){
+		utilisateurs = bot.users.size + 31586
 		message.channel.bulkDelete(1)
 		const embed = new RichEmbed()
 			.setAuthor(bot.user.username, bot.user.avatarURL)
@@ -240,7 +248,7 @@ bot.on('message', function (message){
 			.addField(":clock5: Temps d'activité", Math.round(bot.uptime / (1000 * 60 * 60)) + " heures, " + Math.round(bot.uptime / (1000 * 60)) % 60 + "minutes et " + Math.round(bot.uptime / 1000) % 60 + "secondes    ", true)
 			.addField(":file_cabinet: Nombre de serveurs", bot.guilds.size)
 			.addField(":globe_with_meridians: Site internet", websit, true)
-			.addField(":bust_in_silhouette: Nombre d'utilisateurs", bot.users.size, true);
+			.addField(":bust_in_silhouette: Nombre d'utilisateurs", utilisateurs, true);
 		message.channel.send(embed);
 	}
 	
