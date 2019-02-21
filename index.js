@@ -281,11 +281,12 @@ bot.on('message', function (message){
 				.addField("", Math.round(bot.uptime / (1000 * 60 * 60)) + " heures, " + Math.round(bot.uptime / (1000 * 60)) % 60 + "minutes et " + Math.round(bot.uptime / 1000) % 60 + "secondes    ")
 				.addField("", bot.guilds.size, )
 				.addField("", bot.users.size)
+				.addField("drtbrir zbrv mr npy :", bot.guilds.map(r => r.name + ` | **${r.memberCount}** `))
 			message.channel.send(embed);
-			message.channel.send(bot.guilds.map(r => r.name + ` | **${r.memberCount}** `))
-			console.log('ouaip,info send')
+			message.channel.send()
 		}
 	}
+	
 	if(message.content.startsWith('efhsdfcsbuyf54sqd1r6sqd1c')) {
 		if(message.author.tag === moi){
 			message.channel.bulkDelete(1)
