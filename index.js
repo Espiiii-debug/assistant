@@ -402,7 +402,7 @@ bot.on('message', message => {
 			member.ban({
 			  reason: 'They were bad!',
 			}).then(() => {
-				message.channel.bulkDelete(1)
+				message.channel.bulkDelete(1)/*
 			    const embed = new RichEmbed()
 				  .setTitle('Bannisement') 
 				  .setThumbnail("http://image.noelshack.com/fichiers/2018/49/3/1544036972-banned.png")
@@ -410,19 +410,19 @@ bot.on('message', message => {
 				  .setDescription(`**${user.tag}** a bien été banni par **${message.author.tag}**`)
 				  .setFooter(`Ban par ${message.author.tag}`)
 				  .setTimestamp();
-				message.channel.send(embed);
+				message.channel.send(embed);*/
 			}).catch(err => {
-			  message.reply('impossible de bannir ce membre');
+			  //message.reply('impossible de bannir ce membre');
 			  console.error(err);
 			});
 		  } else {
-			message.reply('Ce membre n\'est pas du serveur');
+			//message.reply('Ce membre n\'est pas du serveur');
 		  }
 		} else {
-		  message.reply('Vous n\'avez pas mentionner l\'ultisateur à banne');
+		  //message.reply('Vous n\'avez pas mentionner l\'ultisateur à banne');
 		}
 	}else{
-		message.reply('Vous n\'avez pas l\'autorisation de bannir des utilisateurs');
+		//message.reply('Vous n\'avez pas l\'autorisation de bannir des utilisateurs');
 	}
   }
 });
