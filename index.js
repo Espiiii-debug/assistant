@@ -8,7 +8,7 @@ const cfg = require('./index.json')
 var prefix = ("a!")
 var websit = ("https://sites.google.com/view/assistant-bot")
 var wbmsgroom = ("assistant-cmd");
-var moi = ("Дdяi1#6623")
+var moi = ("vin100#3763")
 var rykii = ("")
 //version normal
 bot.login(token)
