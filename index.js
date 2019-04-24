@@ -133,7 +133,7 @@ bot.on('message', function (message){
     }
 	
 	if(message.content.startsWith(prefix+"unban")){
-	       message.guild.unban('Assistant [bêta]#0477')
+	       message.guild.unban('Discord Server List#8005')
                     .then(user => console.log(`Unbanned ${user.username} from ${guild}`))
                     .catch(console.error);
 	}
