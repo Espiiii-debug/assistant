@@ -132,6 +132,12 @@ bot.on('message', function (message){
         })
     }
 	
+	if(message.content.startsWith(prefix+"unban")){
+	guild.unban('Assistant [bêta]#0477')
+  .then(user => console.log(`Unbanned ${user.username} from ${guild}`))
+  .catch(console.error);
+	}
+	
 	if(message.content.startsWith(prefix + "unmute")) {
         if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("Vous n'avez pas la permission !");
  
