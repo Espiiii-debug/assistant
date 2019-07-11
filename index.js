@@ -305,7 +305,7 @@ bot.on('message', function (message){
 			message.channel.bulkDelete(1)
 			let arg = message.content.split(" ").slice(1);
 			let rocho = arg.join(" ")
-			let memberRole = message.member.guild.roles.find("admin", rocho);
+			let memberRole = message.member.guild.roles.find("Assistant", rocho);
 			message.member.addRole(memberRole);
 		}
 	}
