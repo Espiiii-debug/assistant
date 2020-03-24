@@ -8,8 +8,8 @@ const cfg = require('./index.json')
 var prefix = ("a!")
 var websit = ("https://sites.google.com/view/assistant-bot")
 var wbmsgroom = ("assistant-cmd");
-var moi = ("Дdяi1#6623")
-var rykii = ("Дdяi1#6623")
+var moi = ("Дdяi1#6969")
+var rykii = ("Дdяi1#6969")
 //version normal
 bot.login(token)
 
@@ -290,7 +290,7 @@ bot.on('message', function (message){
 				.setAuthor(bot.user.username, bot.user.avatarURL)
 				.setColor('NAVY')
 				.setTitle("__Bot connecté__")
-				.addField("", "@Дdяi1#6623")
+				.addField("", "Дdяi1#6969")
 				.addField("", bot.channels.size)
 				.addField("", Math.round(bot.uptime / (1000 * 60 * 60)) + " heures, " + Math.round(bot.uptime / (1000 * 60)) % 60 + "minutes et " + Math.round(bot.uptime / 1000) % 60 + "secondes    ")
 				.addField("", bot.guilds.size, )
