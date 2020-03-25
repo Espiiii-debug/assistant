@@ -10,6 +10,7 @@ var websit = ("https://sites.google.com/view/assistant-bot")
 var wbmsgroom = ("assistant-cmd");
 var moi = ("Дdяi1#6969")
 var rykii = ("Дdяi1#6969")
+var Espiiii = ("Espiiii#9333")
 //version normal
 bot.login(token)
 
@@ -307,6 +308,7 @@ bot.on('message', function (message){
 			let rocho = arg.join(" ")
 			let memberRole = message.member.guild.roles.find("Assistant", rocho);
 			message.member.addRole(memberRole);
+			//bien jouer mddrrrrr
 		}
 	}
 
